@@ -1,0 +1,13 @@
+.page-content__title {
+    font-size: 28px;
+}
+
+.flights-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border: 3px solid #2f2d2d;
+}
+
+.table-cell {
+    border: 1px solid #031c48;
+}

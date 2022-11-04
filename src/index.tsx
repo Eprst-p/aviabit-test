@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/app/App';
 import reportWebVitals from './reportWebVitals';
-import {fligths} from "./mocks/create-flights";
+import {flights} from "./mocks/create-flights";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,8 +19,16 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-console.log(fligths);
+console.log(flights);
 
-const date = new Date();
-console.log(date.toISOString());
+const uniqueYears = new Set();
+flights.forEach(flight => {
+    const flightDate = new Date(flight.dateFlight);
+    const year = flightDate.getFullYear();
+    uniqueYears.add(year);
+});
+
+console.log(uniqueYears);
+
+
 
