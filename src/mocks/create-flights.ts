@@ -17,13 +17,23 @@ const createFlight = () => {
     }
     const generateDate = () => {
         const date = new Date();
+        date.setFullYear(date.getFullYear()  - 5 + getRandomPositiveNumber(0, 10));
+        date.setMonth(date.getMonth() + getRandomPositiveNumber(0, 15));
         date.setDate(date.getDate() + getRandomPositiveNumber(5, 15));
-        date.setMonth(date.getMonth() - 6 + getRandomPositiveNumber(0, 15));
-        return date.toISOString();
+        date.setHours(date.getHours() + getRandomPositiveNumber(0, 24));
+        date.setMinutes(date.getMinutes() + getRandomPositiveNumber(0, 60));
+        date.setSeconds(date.getSeconds() + getRandomPositiveNumber(0, 60));
+        date.setMilliseconds(date.getMilliseconds() + getRandomPositiveNumber(0, 1000));
+        return date;
+    }
+    const date = generateDate();
+    const defineFlightType = () => {
+        const currentDate = new Date();
+        return +(currentDate < date);
     }
 
     return ({
-    dateFlight: generateDate(),
+    dateFlight: date.toISOString(),
     flight: getRandomElement(fligthNumbers),
     plnType: getRandomElement(planeTypes),
     pln: getRandomElement(planeNumber),
@@ -32,7 +42,7 @@ const createFlight = () => {
     timeNight: Math.floor(timeFlight*0.45),
     timeBiologicalNight: timeFlight*0.45 + getRandomPositiveNumber(1000, 3000),
     timeWork: timeFlight + getRandomPositiveNumber(7500, 15000),
-    type: getRandomPositiveNumber(0, 1),//сделать логику для сравнения с датой
+    type: defineFlightType(),
     takeoff: takeoffAirport,
     landing: landingAirport(),
     } as FlightType);
