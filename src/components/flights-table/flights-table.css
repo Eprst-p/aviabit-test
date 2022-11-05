@@ -6,8 +6,16 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     border: 3px solid #2f2d2d;
+    border-radius: 10px;
 }
 
 .table-cell {
     border: 1px solid #031c48;
+}
+
+.show-months-btn {
+    margin: 0px 10px 5px 50px;
+    border: 2px solid #031c48;
+    border-radius: 10px;
+    background-color: cadetblue;
 }

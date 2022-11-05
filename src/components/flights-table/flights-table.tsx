@@ -10,6 +10,7 @@ function FlightsTable(): JSX.Element {
         uniqueYears.add(year);
     });
     const yearsArr:number[] = Array.from(uniqueYears);
+    yearsArr.sort();
 
     return (
         <main className="page-content">
@@ -22,7 +23,7 @@ function FlightsTable(): JSX.Element {
                         <div className="table-cell">Рабочее время по плану</div>
                     {
                         yearsArr.map((year) =>
-                            <YearStats year={year} />,
+                            <YearStats year={year} key={year} />,
                         )
                     }
                 </div>
