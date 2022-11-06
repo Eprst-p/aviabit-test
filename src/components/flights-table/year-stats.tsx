@@ -1,8 +1,8 @@
-import {flights} from "../../mocks/create-flights";
 import MonthsTable from "./months-table";
 import {useState} from "react";
 import "./icons/icon-plus-24.png"
 import "./icons/icon-minus-24.png"
+import {getFlightsPerYear} from "../../settings/getFlightsPerYear";
 
 type FlightProps = {
     year: number;
@@ -11,11 +11,7 @@ type FlightProps = {
 function YearStats({year}: FlightProps): JSX.Element {
     const [showMonths, setShowMonths] = useState(false);
 
-    const flightsPerYear = flights.filter((flight) => {
-        const flightDate = new Date(flight.dateFlight);
-        const currentYear = flightDate.getFullYear();
-        return currentYear === year;
-    })
+    const flightsPerYear = getFlightsPerYear(year);
     let flightTime = 0;
     let workTimeFact = 0;
     let workTimePlan = 0;

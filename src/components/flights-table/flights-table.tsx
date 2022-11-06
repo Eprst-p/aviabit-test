@@ -4,6 +4,7 @@ import YearStats from "./year-stats";
 import {SortOrder} from "../../settings/sort-order";
 import {useState} from "react";
 import {sortAsc, sortDesc} from "../../settings/sort-functions";
+import ChartGraphs from "./chart-graphs";
 
 
 function FlightsTable(): JSX.Element {
@@ -19,11 +20,9 @@ function FlightsTable(): JSX.Element {
 
     switch (sortOrder) {
         case SortOrder.Asc:
-            console.log('asc');
             yearsArr.sort(sortAsc);
             break;
         case SortOrder.Desc:
-            console.log('desc');
             yearsArr.sort(sortDesc);
             break;
     }
@@ -53,6 +52,9 @@ function FlightsTable(): JSX.Element {
                             <YearStats year={year} key={year} />,
                         )
                     }
+                </div>
+                <div className="chart-container">
+                    <ChartGraphs years={yearsArr} />
                 </div>
             </div>
         </main>
