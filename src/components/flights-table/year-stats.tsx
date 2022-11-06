@@ -1,6 +1,8 @@
 import {flights} from "../../mocks/create-flights";
 import MonthsTable from "./months-table";
 import {useState} from "react";
+import "./icons/icon-plus-24.png"
+import "./icons/icon-minus-24.png"
 
 type FlightProps = {
     year: number;
@@ -28,8 +30,9 @@ function YearStats({year}: FlightProps): JSX.Element {
 
     return (
         <>
-            <div className="table-cell">{year}
-                <button className="show-months-btn" onClick={handleShowMonthsBtnClick}>Показать месяцы</button>
+            <div className="table-cell">
+                <button className={`show-months-btn ${showMonths ? 'btn-minus' : 'btn-plus'}`} onClick={handleShowMonthsBtnClick}></button>
+                {year}
             </div>
             <div className="table-cell">{flightTime}</div>
             <div className="table-cell">{workTimeFact}</div>

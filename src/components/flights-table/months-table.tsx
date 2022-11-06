@@ -1,6 +1,6 @@
 import {FlightType} from "../../types/flight-type";
 import MonthStats from "./month-stats";
-import {sortAsc} from "../settings/sortAsc";
+import {sortAsc} from "../../settings/sort-functions";
 
 type MonthsStatsProps = {
     flightsPerYear: FlightType[];

@@ -1,4 +1,4 @@
-import {MonthsNamesType} from "../../types/months-names-type";
+import {MonthsNamesType} from "../types/months-names-type";
 
 export const monthNames:MonthsNamesType = {
     0: 'Январь',

@@ -1,5 +1,5 @@
 import {FlightType} from "../../types/flight-type";
-import {monthNames} from "../settings/months-names";
+import {monthNames} from "../../settings/months-names";
 
 type MonthProps = {
     flightsPerYear: FlightType[];
