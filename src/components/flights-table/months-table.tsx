@@ -16,7 +16,6 @@ function MonthsTable({flightsPerYear}: MonthsStatsProps): JSX.Element {
     const monthsArr:number[] = Array.from(uniqueMonths);
     monthsArr.sort(sortAsc);
 
-
     return (
         <>
             {

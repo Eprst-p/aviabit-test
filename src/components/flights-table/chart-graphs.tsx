@@ -9,7 +9,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import {getFlightsPerYear} from "../../settings/getFlightsPerYear";
+import {getFlightsPerYear} from "../../settings/get-flights-per-year";
 
 
 ChartJS.register(

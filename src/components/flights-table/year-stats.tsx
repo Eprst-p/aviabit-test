@@ -2,13 +2,14 @@ import MonthsTable from "./months-table";
 import {useState} from "react";
 import "./icons/icon-plus-24.png"
 import "./icons/icon-minus-24.png"
-import {getFlightsPerYear} from "../../settings/getFlightsPerYear";
+import {getFlightsPerYear} from "../../settings/get-flights-per-year";
 
 type FlightProps = {
     year: number;
 }
 
 function YearStats({year}: FlightProps): JSX.Element {
+
     const [showMonths, setShowMonths] = useState(false);
 
     const flightsPerYear = getFlightsPerYear(year);

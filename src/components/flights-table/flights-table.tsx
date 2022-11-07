@@ -1,38 +1,34 @@
 import './flights-table.css';
-import {flights} from "../../mocks/create-flights";
 import YearStats from "./year-stats";
 import {SortOrder} from "../../settings/sort-order";
-import {useState} from "react";
 import {sortAsc, sortDesc} from "../../settings/sort-functions";
 import ChartGraphs from "./chart-graphs";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
+import {getSortOrder, getUniqueYears} from "../../store/selectors";
+import {changeSortOrder} from "../../store/interface-process/interface-process";
 
 
 function FlightsTable(): JSX.Element {
-    const [sortOrder, setSortOrder] = useState(SortOrder.Asc)
+    const dispatch = useAppDispatch();
 
-    const uniqueYears = new Set<number>();
-    flights.forEach(flight => {
-        const flightDate = new Date(flight.dateFlight);
-        const year = flightDate.getFullYear();
-        uniqueYears.add(year);
-    });
-    const yearsArr:number[] = Array.from(uniqueYears);
+    const sortOrder = useAppSelector(getSortOrder)
+    const years = useAppSelector(getUniqueYears);
 
     switch (sortOrder) {
         case SortOrder.Asc:
-            yearsArr.sort(sortAsc);
+            years.sort(sortAsc);
             break;
         case SortOrder.Desc:
-            yearsArr.sort(sortDesc);
+            years.sort(sortDesc);
             break;
     }
 
     const handleSortBtnDownClick = () => {
-        setSortOrder(SortOrder.Asc);
+        dispatch(changeSortOrder(SortOrder.Asc))
     }
 
     const handleSortBtnUpClick = () => {
-        setSortOrder(SortOrder.Desc);
+        dispatch(changeSortOrder(SortOrder.Desc))
     }
 
     return (
@@ -48,13 +44,13 @@ function FlightsTable(): JSX.Element {
                         <div className="table-cell">Рабочее время по факту</div>
                         <div className="table-cell">Рабочее время по плану</div>
                     {
-                        yearsArr.map((year) =>
+                        years.map((year) =>
                             <YearStats year={year} key={year} />,
                         )
                     }
                 </div>
                 <div className="chart-container">
-                    <ChartGraphs years={yearsArr} />
+                    <ChartGraphs years={years} />
                 </div>
             </div>
         </main>
