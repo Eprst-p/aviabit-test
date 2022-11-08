@@ -1,5 +1,8 @@
+import './month-stats.css';
 import {FlightType} from "../../types/flight-type";
 import {monthNames} from "../../settings/months-names";
+import {getFlightsPerPeriod} from "../../settings/get-flights-per-period";
+import {PeriodName} from "../../settings/period-name";
 
 type MonthProps = {
     flightsPerYear: FlightType[];
@@ -7,11 +10,8 @@ type MonthProps = {
 }
 
 function MonthStats({flightsPerYear, month}: MonthProps): JSX.Element {
-    const flightsPerMonth = flightsPerYear.filter((flight) => {
-        const flightDate = new Date(flight.dateFlight);
-        const currentMonth = flightDate.getMonth();
-        return currentMonth === month;
-    })
+    const flightsPerMonth = getFlightsPerPeriod(flightsPerYear, month, PeriodName.Month);
+
     let flightTime = 0;
     let workTimeFact = 0;
     let workTimePlan = 0;

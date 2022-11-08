@@ -2,7 +2,7 @@ import './flights-table.css';
 import YearStats from "./year-stats";
 import {SortOrder} from "../../settings/sort-order";
 import {sortAsc, sortDesc} from "../../settings/sort-functions";
-import ChartGraphs from "./chart-graphs";
+import ChartGraphs from "../chart-graphs/chart-graphs";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
 import {getSortOrder, getUniqueYears} from "../../store/selectors";
 import {changeSortOrder} from "../../store/interface-process/interface-process";
@@ -13,6 +13,7 @@ function FlightsTable(): JSX.Element {
 
     const sortOrder = useAppSelector(getSortOrder)
     const years = useAppSelector(getUniqueYears);
+
 
     switch (sortOrder) {
         case SortOrder.Asc:
@@ -50,7 +51,7 @@ function FlightsTable(): JSX.Element {
                     }
                 </div>
                 <div className="chart-container">
-                    <ChartGraphs years={years} />
+                    <ChartGraphs />
                 </div>
             </div>
         </main>

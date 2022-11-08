@@ -1,18 +1,23 @@
+import './year-stats.css';
 import MonthsTable from "./months-table";
 import {useState} from "react";
 import "./icons/icon-plus-24.png"
 import "./icons/icon-minus-24.png"
-import {getFlightsPerYear} from "../../settings/get-flights-per-year";
+import {getFlightsPerPeriod} from "../../settings/get-flights-per-period";
+import {useAppSelector} from "../../hooks/redux-hooks";
+import {getAllFlights} from "../../store/selectors";
+import {PeriodName} from "../../settings/period-name";
 
 type FlightProps = {
     year: number;
 }
 
 function YearStats({year}: FlightProps): JSX.Element {
+    const allFlights = useAppSelector(getAllFlights);
 
     const [showMonths, setShowMonths] = useState(false);
 
-    const flightsPerYear = getFlightsPerYear(year);
+    const flightsPerYear = getFlightsPerPeriod(allFlights, year, PeriodName.Year);
     let flightTime = 0;
     let workTimeFact = 0;
     let workTimePlan = 0;
