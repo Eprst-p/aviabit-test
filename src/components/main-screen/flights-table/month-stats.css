@@ -4,3 +4,13 @@
     text-align: start;
     padding-left: 5px;
 }
+
+.month-link {
+    text-decoration: none;
+    color: white;
+}
+
+.month-link:hover {
+    text-decoration: #031c48 underline;
+    color: #031c48;
+}

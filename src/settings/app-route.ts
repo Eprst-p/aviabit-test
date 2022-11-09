@@ -1,6 +1,7 @@
 export enum AppRoute {
   Root = '/',
   MainScreen = '/',
-  DetailedScreen = '/detailed-screen',
-  NotFound = '/not-found'
+  DetailedScreenYear = '/detailed-screen/:year',
+  DetailedScreenMonth = '/detailed-screen/:year/:month',
+  NotFound = '/not-found',
 }

@@ -38,6 +38,7 @@ function FlightsTable(): JSX.Element {
                     <button className={`sort-btn btn-down ${sortOrder === SortOrder.Asc ?'sort-btn--active' : ''}`} onClick={handleSortBtnDownClick}></button>
                     <button className={`sort-btn btn-up ${sortOrder === SortOrder.Desc ?'sort-btn--active' : ''}`} onClick={handleSortBtnUpClick}></button>
                 </div>
+                <div className="table-cell">Количество рейсов</div>
                 <div className="table-cell">Налет</div>
                 <div className="table-cell">Рабочее время по факту</div>
                 <div className="table-cell">Рабочее время по плану</div>

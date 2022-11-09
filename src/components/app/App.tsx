@@ -24,7 +24,11 @@ function App() {
                     element={<MainScreen/>}
                 />
                 <Route
-                    path={AppRoute.DetailedScreen}
+                    path={AppRoute.DetailedScreenYear}
+                    element={<DetailedScreen/>}
+                />
+                <Route
+                    path={AppRoute.DetailedScreenMonth}
                     element={<DetailedScreen/>}
                 />
             </Route>

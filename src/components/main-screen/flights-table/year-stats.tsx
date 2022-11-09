@@ -38,11 +38,12 @@ function YearStats({year}: FlightProps): JSX.Element {
                 <button className={`show-months-btn ${showMonths ? 'btn-minus' : 'btn-plus'}`} onClick={handleShowMonthsBtnClick}></button>
                 <Link
                     className="year-link"
-                    to={generatePath(AppRoute.DetailedScreen)}
+                    to={generatePath(AppRoute.DetailedScreenYear, {year: `${year}`})}
                 >
                     {year}
                 </Link>
             </div>
+            <div className="table-cell">{flightsPerYear.length}</div>
             <div className="table-cell">{flightTime}</div>
             <div className="table-cell">{workTimeFact}</div>
             <div className="table-cell">{workTimePlan}</div>
