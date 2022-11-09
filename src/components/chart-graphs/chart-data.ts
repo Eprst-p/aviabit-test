@@ -1,12 +1,15 @@
 import {getFlightsPerPeriod} from "../../settings/get-flights-per-period";
 import {FlightType} from "../../types/flight-type";
 import {PeriodName} from "../../settings/period-name";
-import {sortAsc} from "../../settings/sort-functions";
 import {monthNames} from "../../settings/months-names";
 import {WorkTimeType} from "../../settings/work-time-type";
+import {sortAsc} from "../../settings/sort-functions";
 
 export const createChartData = (allFlights:FlightType[], xAxisElements: number[], periodPerData: PeriodName) => {
-    xAxisElements.sort(sortAsc);
+
+    if (periodPerData === PeriodName.Month) {
+        xAxisElements.sort(sortAsc);
+    }
 
     const createXvalue = (element:number) => {
         switch (periodPerData) {

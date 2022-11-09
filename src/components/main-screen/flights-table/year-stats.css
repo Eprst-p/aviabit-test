@@ -23,3 +23,13 @@
     border: 2px solid #eed649;
     background-color: #00f3c8;
 }
+
+.year-link {
+    text-decoration: none;
+    color: white;
+}
+
+.year-link:hover {
+    text-decoration: #031c48 underline;
+    color: #031c48;
+}

@@ -15,12 +15,3 @@ export const getUniqueYears = createSelector(getAllFlights, (flights: FlightType
 
 export const getSortOrder = (state:State) => state.INTERFACE.sortOrder;
 export const getYear = (state:State) => state.INTERFACE.year;
-
-//если передавать год - то компонент будет бесконечно/часто обновляться и повесит приложение
-// export const getFlightsPerYear = createSelector(getAllFlights, getYear, (flights, year) => {
-//     return flights.filter((flight) => {
-//         const flightDate = new Date(flight.dateFlight);
-//         const currentYear = flightDate.getFullYear();
-//         return currentYear === year;
-//     })
-// });

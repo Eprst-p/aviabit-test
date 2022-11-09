@@ -1,7 +1,7 @@
-import {FlightType} from "../../types/flight-type";
+import {FlightType} from "../../../types/flight-type";
 import MonthStats from "./month-stats";
-import {sortAsc} from "../../settings/sort-functions";
-import {getUniqueMonths} from "../../settings/get-unique-months";
+import {sortAsc} from "../../../settings/sort-functions";
+import {getUniqueMonths} from "../../../settings/get-unique-months";
 
 type MonthsStatsProps = {
     flightsPerYear: FlightType[];

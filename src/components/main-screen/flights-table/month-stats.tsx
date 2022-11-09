@@ -1,8 +1,8 @@
 import './month-stats.css';
-import {FlightType} from "../../types/flight-type";
-import {monthNames} from "../../settings/months-names";
-import {getFlightsPerPeriod} from "../../settings/get-flights-per-period";
-import {PeriodName} from "../../settings/period-name";
+import {FlightType} from "../../../types/flight-type";
+import {monthNames} from "../../../settings/months-names";
+import {getFlightsPerPeriod} from "../../../settings/get-flights-per-period";
+import {PeriodName} from "../../../settings/period-name";
 
 type MonthProps = {
     flightsPerYear: FlightType[];

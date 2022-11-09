@@ -3,10 +3,12 @@ import MonthsTable from "./months-table";
 import {useState} from "react";
 import "./icons/icon-plus-24.png"
 import "./icons/icon-minus-24.png"
-import {getFlightsPerPeriod} from "../../settings/get-flights-per-period";
-import {useAppSelector} from "../../hooks/redux-hooks";
-import {getAllFlights} from "../../store/selectors";
-import {PeriodName} from "../../settings/period-name";
+import {getFlightsPerPeriod} from "../../../settings/get-flights-per-period";
+import {useAppSelector} from "../../../hooks/redux-hooks";
+import {getAllFlights} from "../../../store/selectors";
+import {PeriodName} from "../../../settings/period-name";
+import {generatePath, Link} from "react-router-dom";
+import {AppRoute} from "../../../settings/app-route";
 
 type FlightProps = {
     year: number;
@@ -34,7 +36,12 @@ function YearStats({year}: FlightProps): JSX.Element {
         <>
             <div className="table-cell">
                 <button className={`show-months-btn ${showMonths ? 'btn-minus' : 'btn-plus'}`} onClick={handleShowMonthsBtnClick}></button>
-                {year}
+                <Link
+                    className="year-link"
+                    to={generatePath(AppRoute.DetailedScreen)}
+                >
+                    {year}
+                </Link>
             </div>
             <div className="table-cell">{flightTime}</div>
             <div className="table-cell">{workTimeFact}</div>
