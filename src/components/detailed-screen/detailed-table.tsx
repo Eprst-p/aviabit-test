@@ -27,7 +27,6 @@ function DetailedTable({flights}: FlightProps): JSX.Element {
     //можно плановые и фактические покрасить в разный цвет
     return (
         <div className="detailed-table-container" >
-            <h1 className="page-content__title">Командир воздушного судна USS Enterprise</h1>
             <p className="detailed-table-title">{`Таблица рейсов за ${month} ${year} год`}</p>
             <div className="details-table">
                 <div className="table-cell">Дата</div>

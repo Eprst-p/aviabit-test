@@ -1,0 +1,22 @@
+.footer {
+    background-color: #0a5050;
+    border-top: 2px solid #eed649;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    font-size: calc(6px + 1vmin);
+    color: white;
+    width: 100%;
+}
+
+.search-form {
+    margin: 5px;
+}
+
+.filter-form {
+    margin: 5px;
+}
+
+.bread-crumbs {
+    margin: 5px;
+}

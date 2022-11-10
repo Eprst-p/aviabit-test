@@ -1,4 +1,3 @@
-import './App.css';
 import {useAppDispatch} from "../../hooks/redux-hooks";
 import {loadFlights} from "../../store/data-process/data-process";
 import {flights} from "../../mocks/create-flights";

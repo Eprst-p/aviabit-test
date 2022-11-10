@@ -32,7 +32,6 @@ function FlightsTable(): JSX.Element {
 
     return (
         <div className="flights-table-container" >
-            <h1 className="page-content__title">Командир воздушного судна USS Enterprise</h1>
             <div className="flights-table">
                 <div className="table-cell">Год
                     <button className={`sort-btn btn-down ${sortOrder === SortOrder.Asc ?'sort-btn--active' : ''}`} onClick={handleSortBtnDownClick}></button>

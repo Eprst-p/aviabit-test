@@ -1,17 +1,16 @@
+import './layout.css';
 import {Outlet} from 'react-router-dom';
-// import Footer from '../footer/footer';
-// import Header from '../header/header';
+import Header from "../header/header";
+import Footer from "../footer/footer";
 
 
 function Layout(): JSX.Element {
 
     return (
-        <div className="App">
-            <header className="App-header">
-                {/*<Header />*/}
+        <div className="layout-wrapper">
+                <Header />
                 <Outlet />
-                {/*<Footer />*/}
-            </header>
+                <Footer />
         </div>
     );
 }
