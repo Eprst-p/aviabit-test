@@ -1,14 +1,15 @@
 import {FlightType} from "../../../types/flight-type";
 import MonthStats from "./month-stats";
 import {sortAsc} from "../../../settings/sort-functions";
-import {getUniqueMonths} from "../../../settings/get-unique-months";
+import {getUniquePeriods} from "../../../settings/get-unique-periods";
+import {PeriodName} from "../../../settings/period-name";
 
 type MonthsStatsProps = {
     flightsPerYear: FlightType[];
 }
 
 function MonthsTable({flightsPerYear}: MonthsStatsProps): JSX.Element {
-    const monthsArr = getUniqueMonths(flightsPerYear);
+    const monthsArr = getUniquePeriods(flightsPerYear, PeriodName.Month);
     monthsArr.sort(sortAsc);
 
     return (

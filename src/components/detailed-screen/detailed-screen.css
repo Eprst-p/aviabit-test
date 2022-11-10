@@ -8,7 +8,7 @@
 
 .details-table {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: 1fr 3fr 3fr 3fr ;
     border: 3px solid #2f2d2d;
     border-radius: 10px;
 }

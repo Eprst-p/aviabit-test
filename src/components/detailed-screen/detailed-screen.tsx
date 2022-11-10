@@ -1,4 +1,3 @@
-import FlightsTable from "../main-screen/flights-table/flights-table";
 import {useParams} from "react-router-dom";
 import {useAppSelector} from "../../hooks/redux-hooks";
 import {getAllFlights} from "../../store/selectors";
@@ -23,8 +22,6 @@ function DetailedScreen(): JSX.Element {
         const month = monthsInIso[params.month];
         flightsToShow = getFlightsPerPeriod(flightsToShow, month, PeriodName.Month);
     }
-
-    console.log(flightsToShow);
 
     return (
         <main className="page-content">

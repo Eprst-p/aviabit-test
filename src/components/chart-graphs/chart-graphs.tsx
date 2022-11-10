@@ -17,7 +17,7 @@ import {createChartData} from "./chart-data";
 import {useAppSelector} from "../../hooks/redux-hooks";
 import {getAllFlights, getSortOrder, getUniqueYears} from "../../store/selectors";
 import {PeriodName} from "../../settings/period-name";
-import {getUniqueMonths} from "../../settings/get-unique-months";
+import {getUniquePeriods} from "../../settings/get-unique-periods";
 import {getFlightsPerPeriod} from "../../settings/get-flights-per-period";
 
 
@@ -48,7 +48,7 @@ function ChartGraphs(): JSX.Element {
             break;
         default:
             const flightsPerYear = getFlightsPerPeriod(allFlights, +selectedYear, PeriodName.Year);
-            const months = getUniqueMonths(flightsPerYear);
+            const months = getUniquePeriods(flightsPerYear, PeriodName.Month);
             data = createChartData(flightsPerYear, months, PeriodName.Month);
             break;
     }

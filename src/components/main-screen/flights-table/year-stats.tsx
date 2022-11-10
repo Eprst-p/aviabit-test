@@ -1,8 +1,8 @@
 import './year-stats.css';
 import MonthsTable from "./months-table";
 import {useState} from "react";
-import "./icons/icon-plus-24.png"
-import "./icons/icon-minus-24.png"
+import "../../../images/icons/icon-plus-24.png"
+import "../../../images/icons/icon-minus-24.png"
 import {getFlightsPerPeriod} from "../../../settings/get-flights-per-period";
 import {useAppSelector} from "../../../hooks/redux-hooks";
 import {getAllFlights} from "../../../store/selectors";

@@ -8,13 +8,13 @@
 }
 
 .btn-plus {
-    background-image: url("icons/icon-plus-24.png");
+    background-image: url("../../../images/icons/icon-plus-24.png");
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .btn-minus {
-    background-image: url("icons/icon-minus-24.png");
+    background-image: url("../../../images/icons/icon-minus-24.png");
     background-repeat: no-repeat;
     background-position: center;
 }

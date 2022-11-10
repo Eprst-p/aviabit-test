@@ -11,5 +11,5 @@ export const getMonthFromIso = (dateInIso: string) => {
 
 export const getDayFromIso = (dateInIso: string) => {
     const date = new Date(dateInIso);
-    return date.getDay();
+    return date.getDate();
 }

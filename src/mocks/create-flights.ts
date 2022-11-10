@@ -48,5 +48,5 @@ const createFlight = () => {
     } as FlightType);
 };
 
-export const flights = Array.from({length: 100}, () => createFlight());
+export const flights = Array.from({length: 500}, () => createFlight());
 
