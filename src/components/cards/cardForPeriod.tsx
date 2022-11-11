@@ -1,3 +1,4 @@
+import './card.css'
 import {FlightType} from "../../types/flight-type";
 import {PeriodName} from "../../settings/period-name";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
@@ -9,6 +10,7 @@ import {
     changeSummaryPeriodValue
 } from "../../store/data-process/data-process";
 import {monthNames} from "../../settings/months-names";
+import {convertTime} from "../../settings/convert-time";
 
 type CardProps = {
     name: number | string;
@@ -53,9 +55,9 @@ function CardForPeriod({name, flightsInAbovePeriod}: CardProps): JSX.Element {
             <h6 className="card-title">{`${cardTitleName}`}</h6>
                 <div className="card-stats">
                     <div className="card-stat-line">{`Количество рейсов: ${flightsAmount}`}</div>
-                    <div className="card-stat-line">{`Налет: ${flightTime}`}</div>
-                    <div className="card-stat-line">{`Рабочее время по факту: ${workTimeFact}`}</div>
-                    <div className="card-stat-line">{`Рабочее время по плану: ${workTimePlan}`}</div>
+                    <div className="card-stat-line">{`Налет: ${convertTime(flightTime)}`}</div>
+                    <div className="card-stat-line">{`Рабочее время по факту: ${convertTime(workTimeFact)}`}</div>
+                    <div className="card-stat-line">{`Рабочее время по плану: ${convertTime(workTimePlan)}`}</div>
                 </div>
             <button className="expand-btn" onClick={onExpandBtnClick}>Развернуть</button>
         </div>

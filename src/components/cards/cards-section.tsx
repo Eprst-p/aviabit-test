@@ -11,6 +11,7 @@ import {PeriodName} from "../../settings/period-name";
 import CardForPeriod from "./cardForPeriod";
 import {sortAsc, sortDesc} from "../../settings/sort-functions";
 import CardForFlight from "./cardForFlight";
+import {convertTime} from "../../settings/convert-time";
 
 function CardsSection(): JSX.Element {
     const flightsInAbovePeriod = useAppSelector(getFlightsInAbovePeriod);
@@ -55,9 +56,9 @@ function CardsSection(): JSX.Element {
                 <h4 className="summary-stats-title">{`Сводная статистика за период: ${titleName}`}</h4>
                 <div className="summary-stats">
                     <div className="stat-line">{`Количество рейсов: ${flightsAmount}`}</div>
-                    <div className="stat-line">{`Налет: ${flightTime}`}</div>
-                    <div className="stat-line">{`Рабочее время по факту: ${workTimeFact}`}</div>
-                    <div className="stat-line">{`Рабочее время по плану: ${workTimePlan}`}</div>
+                    <div className="stat-line">{`Налет: ${convertTime(flightTime)}`}</div>
+                    <div className="stat-line">{`Рабочее время по факту: ${convertTime(workTimeFact)}`}</div>
+                    <div className="stat-line">{`Рабочее время по плану: ${convertTime(workTimePlan)}`}</div>
                 </div>
             </div>
             <div className="cards-wrapper">
