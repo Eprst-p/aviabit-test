@@ -3,15 +3,18 @@ import YearStats from "./year-stats";
 import {SortOrder} from "../../../settings/sort-order";
 import {sortAsc, sortDesc} from "../../../settings/sort-functions";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux-hooks";
-import {getSortOrder, getUniqueYears} from "../../../store/selectors";
+import {getAllFlights, getSortOrder} from "../../../store/selectors";
 import {changeSortOrder} from "../../../store/interface-process/interface-process";
+import {getUniquePeriods} from "../../../settings/get-unique-periods";
+import {PeriodName} from "../../../settings/period-name";
 
 
 function FlightsTable(): JSX.Element {
     const dispatch = useAppDispatch();
+    const allFlights = useAppSelector(getAllFlights);
 
     const sortOrder = useAppSelector(getSortOrder)
-    const years = useAppSelector(getUniqueYears);
+    const years = getUniquePeriods(allFlights, PeriodName.Year);
 
     switch (sortOrder) {
         case SortOrder.Asc:

@@ -15,7 +15,7 @@ import {defaultSelectValue} from "../../settings/consts";
 import {createChartOptions} from "./chart-options";
 import {createChartData} from "./chart-data";
 import {useAppSelector} from "../../hooks/redux-hooks";
-import {getAllFlights, getSortOrder, getUniqueYears} from "../../store/selectors";
+import {getAllFlights, getSortOrder} from "../../store/selectors";
 import {PeriodName} from "../../settings/period-name";
 import {getUniquePeriods} from "../../settings/get-unique-periods";
 import {getFlightsPerPeriod} from "../../settings/get-flights-per-period";
@@ -34,7 +34,7 @@ ChartJS.register(
 function ChartGraphs(): JSX.Element {
     const allFlights = useAppSelector(getAllFlights);
     const sortOrder = useAppSelector(getSortOrder);//нужен только для ререндера, довольно криво, но как есть пока
-    const years = useAppSelector(getUniqueYears);
+    const years = getUniquePeriods(allFlights, PeriodName.Year);
 
 
     const [selectedYear, setSelectedValue] = useState(defaultSelectValue);

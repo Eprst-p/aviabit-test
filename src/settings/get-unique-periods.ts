@@ -7,6 +7,9 @@ export const getUniquePeriods = (flights: FlightType[], chosenPeriod: PeriodName
         const flightDate = new Date(flight.dateFlight);
         let period = 0;
         switch (chosenPeriod) {
+            case PeriodName.Year:
+                period = flightDate.getFullYear();
+                break;
             case PeriodName.Month:
                 period = flightDate.getMonth();
                 break;

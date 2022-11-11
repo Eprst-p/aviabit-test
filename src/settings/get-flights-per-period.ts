@@ -7,6 +7,8 @@ export const getFlightsPerPeriod = (enterFlightsArr: FlightType[], period: numbe
         const flightDate = new Date(flight.dateFlight);
         let currentPeriod = 0;
         switch (periodName) {
+            case PeriodName.AllYears:
+                return enterFlightsArr;
             case PeriodName.Year:
                 currentPeriod = flightDate.getFullYear();
                 break;

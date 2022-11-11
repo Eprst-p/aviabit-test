@@ -1,5 +1,5 @@
 import {useAppDispatch} from "../../hooks/redux-hooks";
-import {loadFlights} from "../../store/data-process/data-process";
+import {changeFlightsInAbovePeriod, loadFlights} from "../../store/data-process/data-process";
 import {flights} from "../../mocks/create-flights";
 import MainScreen from "../main-screen/main-screen";
 import {AppRoute} from "../../settings/app-route";
@@ -11,6 +11,7 @@ import NotFound from "../not-found/not-found";
 function App() {
     const dispatch = useAppDispatch();
     dispatch(loadFlights(flights));
+    dispatch(changeFlightsInAbovePeriod(flights));
 
     return (
         <Routes>
