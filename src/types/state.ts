@@ -5,9 +5,10 @@ import {PeriodName} from "../settings/period-name";
 
 export type DataProcess = {
   allFlights: FlightType[];
-  chosenSummaryPeriod: PeriodName;
-  summaryPeriodValue: number;
-  flightsInAbovePeriod: FlightType[];
+  showedPeriod: PeriodName;
+  chosenYear: number | undefined;
+  chosenMonth: number | undefined;
+  chosenDay: number | undefined;
 };
 
 export type InterfaceProcess = {

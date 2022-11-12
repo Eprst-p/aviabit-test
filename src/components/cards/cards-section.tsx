@@ -1,53 +1,65 @@
 import './cards-section.css';
 import {useAppSelector} from "../../hooks/redux-hooks";
 import {
-    getChosenSummaryPeriod,
-    getFlightsInAbovePeriod,
-    getSummaryStatsPeriodValue
+    getAllFlights,
+    getChosenDay,
+    getChosenMonth,
+    getChosenYear,
+    getFligthsPerDay,
+    getFligthsPerMonth,
+    getFligthsPerYear,
+    getShowedPeriod
 } from "../../store/selectors";
-import {getFlightsPerPeriod} from "../../settings/get-flights-per-period";
-import {getUniquePeriods} from "../../settings/get-unique-periods";
+import {getUniquePeriodsNames} from "../../settings/get-unique-periods-names";
 import {PeriodName} from "../../settings/period-name";
-import CardForPeriod from "./cardForPeriod";
-import {sortAsc, sortDesc} from "../../settings/sort-functions";
-import CardForFlight from "./cardForFlight";
+import Card from "./card";
+import {sortAsc} from "../../settings/sort-functions";
 import {convertTime} from "../../settings/convert-time";
+import {FlightType} from "../../types/flight-type";
+import {monthNames} from "../../settings/months-names";
 
 function CardsSection(): JSX.Element {
-    const flightsInAbovePeriod = useAppSelector(getFlightsInAbovePeriod);
-    const chosenSummaryPeriod = useAppSelector(getChosenSummaryPeriod);
-    const summaryPeriodValue = useAppSelector(getSummaryStatsPeriodValue);
-    const flightsPerSummaryPeriod = getFlightsPerPeriod(flightsInAbovePeriod, summaryPeriodValue, chosenSummaryPeriod);
-    const titleName = summaryPeriodValue === 0 ? 'все года' : summaryPeriodValue;
+    const allFlights = useAppSelector(getAllFlights);
+    const showedPeriod = useAppSelector(getShowedPeriod);
+    const chosenYear = useAppSelector(getChosenYear) || '';
+    const chosenMonth = useAppSelector(getChosenMonth) || '';
+    const chosenDay = useAppSelector(getChosenDay) || '';
+    const dayTitle = chosenDay ? `${chosenDay} число` : '';
+    let flightsToShow:FlightType[];
+    const flightsPerYear = useAppSelector(getFligthsPerYear)
+    const flightsPerMonth = useAppSelector(getFligthsPerMonth)
+    const flightsPerDay = useAppSelector(getFligthsPerDay)
+    const titleName = showedPeriod === PeriodName.AllYears ? 'все года' : `${chosenYear} ${monthNames[+chosenMonth]} ${dayTitle}`;
 
-    const flightsAmount = flightsPerSummaryPeriod.length;
+    switch (showedPeriod) {
+        case PeriodName.AllYears:
+            flightsToShow = allFlights;
+            break;
+        case PeriodName.Year:
+            flightsToShow = flightsPerYear;
+            break;
+        case PeriodName.Month:
+            flightsToShow = flightsPerMonth;
+            break;
+        case PeriodName.Day:
+            flightsToShow = flightsPerDay;
+            break;
+    }
+
+    const namesOfShowedCards: string[] = getUniquePeriodsNames(flightsToShow, showedPeriod);
+
+    if (showedPeriod !== PeriodName.Day) {
+        namesOfShowedCards.sort(sortAsc);
+    }
+
+    const flightsAmount = flightsToShow.length;
     let flightTime = 0;
     let workTimeFact = 0;
     let workTimePlan = 0;
-    flightsPerSummaryPeriod.forEach((flight)=>{
+    flightsToShow.forEach((flight)=>{
         flightTime += flight.timeFlight;
         flight.type === 0 ? workTimeFact += flight.timeWork : workTimePlan += flight.timeWork;
     })
-
-    let namesOfShowedCards: number[] | string[] = getUniquePeriods(flightsPerSummaryPeriod, PeriodName.Year);
-
-    switch (chosenSummaryPeriod) {
-        case PeriodName.AllYears:
-            namesOfShowedCards = getUniquePeriods(flightsPerSummaryPeriod, PeriodName.Year);
-            namesOfShowedCards.sort(sortAsc);
-            break;
-        case PeriodName.Year:
-            namesOfShowedCards = getUniquePeriods(flightsPerSummaryPeriod, PeriodName.Month);
-            namesOfShowedCards.sort(sortAsc);
-            break;
-        case PeriodName.Month:
-            namesOfShowedCards = getUniquePeriods(flightsPerSummaryPeriod, PeriodName.Day);
-            namesOfShowedCards.sort(sortAsc);
-            break;
-        case PeriodName.Day:
-            namesOfShowedCards = flightsPerSummaryPeriod.map((flight) => flight.flight);
-            break;
-    }
 
 
     return (
@@ -63,14 +75,8 @@ function CardsSection(): JSX.Element {
             </div>
             <div className="cards-wrapper">
                 {
-                    chosenSummaryPeriod === PeriodName.Day
-                    ?
                         namesOfShowedCards.map((name, index) =>
-                            <CardForFlight name={name} flightsInAbovePeriod={flightsPerSummaryPeriod} key={index} />,
-                        )
-                    :
-                        namesOfShowedCards.map((name, index) =>
-                            <CardForPeriod name={name} flightsInAbovePeriod={flightsPerSummaryPeriod} key={index} />,
+                            <Card name={name} flightsInAbovePeriod={flightsToShow} key={index} />,
                         )
                 }
             </div>

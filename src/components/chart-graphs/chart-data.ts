@@ -5,23 +5,23 @@ import {monthNames} from "../../settings/months-names";
 import {WorkTimeType} from "../../settings/work-time-type";
 import {sortAsc} from "../../settings/sort-functions";
 
-export const createChartData = (allFlights:FlightType[], xAxisElements: number[], periodPerData: PeriodName) => {
+export const createChartData = (allFlights:FlightType[], xAxisElements: string[], periodPerData: PeriodName) => {
 
     if (periodPerData === PeriodName.Month) {
         xAxisElements.sort(sortAsc);
     }
 
-    const createXvalue = (element:number) => {
+    const createXvalue = (element:string) => {
         switch (periodPerData) {
             case PeriodName.Month:
-                return monthNames[element];
+                return monthNames[+element];
             default:
                 return `${element}`;
         }
     }
 
-    const createYvalue = (workTimeType: WorkTimeType, element:number) => {
-        const flightsPerPeriod = getFlightsPerPeriod(allFlights, element, periodPerData);
+    const createYvalue = (workTimeType: WorkTimeType, element:string) => {
+        const flightsPerPeriod = getFlightsPerPeriod(allFlights, +element, periodPerData);
         let y: number = 0;
         flightsPerPeriod.forEach((flight) => {
             if (flight.type === workTimeType) {

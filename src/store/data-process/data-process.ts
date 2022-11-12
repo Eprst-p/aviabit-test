@@ -5,9 +5,10 @@ import {PeriodName} from "../../settings/period-name";
 
 const initialState: DataProcess = {
     allFlights: [],
-    chosenSummaryPeriod: PeriodName.AllYears,
-    summaryPeriodValue: 0,
-    flightsInAbovePeriod: [],
+    showedPeriod: PeriodName.AllYears,
+    chosenYear: undefined,
+    chosenMonth: undefined,
+    chosenDay: undefined,
 };
 
 export const dataProcess = createSlice({
@@ -15,10 +16,11 @@ export const dataProcess = createSlice({
     initialState,
     reducers: {
         loadFlights: (state, {payload}) => {state.allFlights = payload},
-        changeSummaryPeriod: (state, {payload}) => {state.chosenSummaryPeriod = payload},
-        changeSummaryPeriodValue: (state, {payload}) => {state.summaryPeriodValue = payload},
-        changeFlightsInAbovePeriod: (state, {payload}) => {state.flightsInAbovePeriod = payload},
+        changeShowedPeriod: (state, {payload}) => {state.showedPeriod = payload},
+        changeChosenYear: (state, {payload}) => {state.chosenYear = payload},
+        changeChosenMonth: (state, {payload}) => {state.chosenMonth = payload},
+        changeChosenDay: (state, {payload}) => {state.chosenDay = payload},
     },
 });
 
-export const {loadFlights, changeSummaryPeriod, changeSummaryPeriodValue, changeFlightsInAbovePeriod} = dataProcess.actions;
+export const {loadFlights, changeShowedPeriod, changeChosenYear, changeChosenMonth, changeChosenDay } = dataProcess.actions;
