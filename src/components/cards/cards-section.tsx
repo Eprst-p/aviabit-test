@@ -1,5 +1,5 @@
 import './cards-section.css';
-import {useAppSelector} from "../../hooks/redux-hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
 import {
     getAllFlights,
     getChosenDay,
@@ -7,18 +7,21 @@ import {
     getChosenYear,
     getFligthsPerDay,
     getFligthsPerMonth,
-    getFligthsPerYear,
+    getFligthsPerYear, getPeriodNames,
     getShowedPeriod
 } from "../../store/selectors";
-import {getUniquePeriodsNames} from "../../settings/get-unique-periods-names";
 import {PeriodName} from "../../settings/period-name";
 import Card from "./card";
 import {sortAsc} from "../../settings/sort-functions";
 import {convertTime} from "../../settings/convert-time";
 import {FlightType} from "../../types/flight-type";
 import {monthNames} from "../../settings/months-names";
+import {changeFlightsToShow} from "../../store/data-process/data-process";
+import BreadCrumbs from "../bread-crumbs/bread-crumbs";
+import {useEffect} from "react";
 
 function CardsSection(): JSX.Element {
+    const dispatch = useAppDispatch();
     const allFlights = useAppSelector(getAllFlights);
     const showedPeriod = useAppSelector(getShowedPeriod);
     const chosenYear = useAppSelector(getChosenYear) || '';
@@ -46,10 +49,14 @@ function CardsSection(): JSX.Element {
             break;
     }
 
-    const namesOfShowedCards: string[] = getUniquePeriodsNames(flightsToShow, showedPeriod);
+    useEffect(() => {
+        dispatch(changeFlightsToShow(flightsToShow));
+    }, [dispatch, flightsToShow]);
+
+    const periodNames = useAppSelector(getPeriodNames);
 
     if (showedPeriod !== PeriodName.Day) {
-        namesOfShowedCards.sort(sortAsc);
+        periodNames.sort(sortAsc);
     }
 
     const flightsAmount = flightsToShow.length;
@@ -72,11 +79,12 @@ function CardsSection(): JSX.Element {
                     <div className="stat-line">{`Рабочее время по факту: ${convertTime(workTimeFact)}`}</div>
                     <div className="stat-line">{`Рабочее время по плану: ${convertTime(workTimePlan)}`}</div>
                 </div>
+                <BreadCrumbs />
             </div>
             <div className="cards-wrapper">
                 {
-                        namesOfShowedCards.map((name, index) =>
-                            <Card name={name} flightsInAbovePeriod={flightsToShow} key={index} />,
+                    periodNames.map((name, index) =>
+                            <Card name={name} key={index} />,
                         )
                 }
             </div>

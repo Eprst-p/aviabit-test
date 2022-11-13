@@ -5,6 +5,7 @@ import {PeriodName} from "../../settings/period-name";
 
 const initialState: DataProcess = {
     allFlights: [],
+    flightsToShow: [],
     showedPeriod: PeriodName.AllYears,
     chosenYear: undefined,
     chosenMonth: undefined,
@@ -16,6 +17,7 @@ export const dataProcess = createSlice({
     initialState,
     reducers: {
         loadFlights: (state, {payload}) => {state.allFlights = payload},
+        changeFlightsToShow: (state, {payload}) => {state.flightsToShow = payload},
         changeShowedPeriod: (state, {payload}) => {state.showedPeriod = payload},
         changeChosenYear: (state, {payload}) => {state.chosenYear = payload},
         changeChosenMonth: (state, {payload}) => {state.chosenMonth = payload},
@@ -23,4 +25,4 @@ export const dataProcess = createSlice({
     },
 });
 
-export const {loadFlights, changeShowedPeriod, changeChosenYear, changeChosenMonth, changeChosenDay } = dataProcess.actions;
+export const {loadFlights, changeFlightsToShow, changeShowedPeriod, changeChosenYear, changeChosenMonth, changeChosenDay } = dataProcess.actions;

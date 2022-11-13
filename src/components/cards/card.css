@@ -10,7 +10,7 @@
 }
 
 .card-title {
-    margin: 10px;
+    margin: 0;
 }
 
 .card-stats {
@@ -32,4 +32,15 @@
     color: white;
     margin-top: 50px;
     align-self: self-end;
+}
+
+.expand-btn:hover {
+    background-color: gold;
+    color: #031c48;
+    font-weight: bold;
+}
+
+.bread-crumbs-wrapper {
+    font-size: calc(4px + 1vmin);
+    align-self: start;
 }

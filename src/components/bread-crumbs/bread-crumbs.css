@@ -1,0 +1,19 @@
+.bread-crumbs {
+    list-style-type: none;
+    text-align: left;
+    padding: 5px;
+}
+
+.crumb-element {
+    display: inline;
+    cursor: pointer;
+}
+
+.crumb-element:hover {
+    color: #031c48;
+}
+
+.crumb-element:last-child:hover {
+    color: white;
+    cursor: default;
+}

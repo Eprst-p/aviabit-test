@@ -2,7 +2,7 @@ import './card.css'
 import {FlightType} from "../../types/flight-type";
 import {PeriodName} from "../../settings/period-name";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
-import {getShowedPeriod} from "../../store/selectors";
+import {getFlightsToShow, getShowedPeriod} from "../../store/selectors";
 import {getFlightsPerPeriod} from "../../settings/get-flights-per-period";
 import {
     changeChosenDay,
@@ -12,13 +12,13 @@ import {
 } from "../../store/data-process/data-process";
 import {monthNames} from "../../settings/months-names";
 import {convertTime} from "../../settings/convert-time";
+import BreadCrumbs from "../bread-crumbs/bread-crumbs";
 
 type CardProps = {
     name: number | string;
-    flightsInAbovePeriod: FlightType[];
 }
 
-function Card({name, flightsInAbovePeriod}: CardProps): JSX.Element {
+function Card({name}: CardProps): JSX.Element {
     const dispatch = useAppDispatch();
     // const chosenYear = useAppSelector(getChosenYear);
     // const chosenMonth = useAppSelector(getChosenMonth);
@@ -26,6 +26,7 @@ function Card({name, flightsInAbovePeriod}: CardProps): JSX.Element {
     let currentPeriod = PeriodName.Year
     let cardTitleName = name;
     const showedPeriod = useAppSelector(getShowedPeriod);
+    const flightsInAbovePeriod = useAppSelector(getFlightsToShow);
 
     switch (showedPeriod) {
         case PeriodName.Year:
@@ -77,6 +78,9 @@ function Card({name, flightsInAbovePeriod}: CardProps): JSX.Element {
                 showedPeriod === PeriodName.Day
                 ?
                     <>
+                        <div className="bread-crumbs-wrapper">
+                            <BreadCrumbs />
+                        </div>
                         <h6 className="card-title">{`рейс: ${name}`}</h6>
                         <div className="card-stats">
                             <div className="card-stat-line">{`Налет: ${flight.timeFlight}`}</div>
@@ -92,6 +96,9 @@ function Card({name, flightsInAbovePeriod}: CardProps): JSX.Element {
                     </>
                 :
                     <>
+                        <div className="bread-crumbs-wrapper">
+                            <BreadCrumbs />
+                        </div>
                         <h6 className="card-title">{`${cardTitleName}`}</h6>
                         <div className="card-stats">
                             <div className="card-stat-line">{`Количество рейсов: ${flightsAmount}`}</div>

@@ -5,6 +5,7 @@ import {PeriodName} from "../settings/period-name";
 
 export type DataProcess = {
   allFlights: FlightType[];
+  flightsToShow: FlightType[];
   showedPeriod: PeriodName;
   chosenYear: number | undefined;
   chosenMonth: number | undefined;
