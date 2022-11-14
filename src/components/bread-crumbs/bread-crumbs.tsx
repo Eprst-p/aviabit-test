@@ -9,9 +9,13 @@ import {
     changeShowedPeriod
 } from "../../store/data-process/data-process";
 import {PeriodName} from "../../settings/period-name";
+import {PeriodData} from "../../types/period-data";
 
+type BreadCrumbsProps = {
+    perodData: PeriodData
+}
 
-function BreadCrumbs(): JSX.Element {
+function BreadCrumbs({perodData}: BreadCrumbsProps): JSX.Element {
     const dispatch = useAppDispatch();
     const chosenYear = useAppSelector(getChosenYear);
     const chosenMonth = useAppSelector(getChosenMonth);

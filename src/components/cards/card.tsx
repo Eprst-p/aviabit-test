@@ -13,6 +13,8 @@ import {
 import {monthNames} from "../../settings/months-names";
 import {convertTime} from "../../settings/convert-time";
 import BreadCrumbs from "../bread-crumbs/bread-crumbs";
+import {PeriodData} from "../../types/period-data";
+import {getDayFromIso, getMonthFromIso, getYearFromIso} from "../../settings/getDateFromIso";
 
 type CardProps = {
     name: number | string;
@@ -20,21 +22,41 @@ type CardProps = {
 
 function Card({name}: CardProps): JSX.Element {
     const dispatch = useAppDispatch();
-    // const chosenYear = useAppSelector(getChosenYear);
-    // const chosenMonth = useAppSelector(getChosenMonth);
-    // const chosenDay = useAppSelector(getChosenDay);
     let currentPeriod = PeriodName.Year
     let cardTitleName = name;
     const showedPeriod = useAppSelector(getShowedPeriod);
     const flightsInAbovePeriod = useAppSelector(getFlightsToShow);
 
+    const periodDataForBreadCrumbs:PeriodData = {
+        year: undefined,
+        month: undefined,
+        day: undefined
+    }
+
+    let flight: FlightType = flightsInAbovePeriod[0];
+    const flightYear = getYearFromIso(flight.dateFlight);
+    const flightMonth = getMonthFromIso(flight.dateFlight);
+    const flightDay = getDayFromIso(flight.dateFlight);
+
+    let workTimeName:string = '';
+    if (showedPeriod === PeriodName.Day) {
+        flight = flightsInAbovePeriod.filter(flight => flight.flight === name )[0];
+        workTimeName = flight.type === 0 ? "фактическое" : "плановое";
+        periodDataForBreadCrumbs.year = flightYear;
+        periodDataForBreadCrumbs.month = flightMonth;
+        periodDataForBreadCrumbs.day = flightDay;
+    }
+
     switch (showedPeriod) {
         case PeriodName.Year:
             currentPeriod = PeriodName.Month;
             cardTitleName = monthNames[+name];
+            periodDataForBreadCrumbs.year = flightYear;
             break;
         case PeriodName.Month:
             currentPeriod = PeriodName.Day;
+            periodDataForBreadCrumbs.year = flightYear;
+            periodDataForBreadCrumbs.month = flightMonth;
             break;
     }
 
@@ -49,13 +71,6 @@ function Card({name}: CardProps): JSX.Element {
         flight.type === 0 ? workTimeFact += flight.timeWork : workTimePlan += flight.timeWork;
     })
 
-    let flight: FlightType = flightsInAbovePeriod[0];
-    let workTimeName:string = '';
-    if (showedPeriod === PeriodName.Day) {
-        flight = flightsInAbovePeriod.filter(flight => flight.flight === name )[0];
-        workTimeName = flight.type === 0 ? "фактическое" : "плановое";
-
-    }
 
     const onExpandBtnClick = () => {
         dispatch(changeShowedPeriod(currentPeriod));
@@ -79,7 +94,7 @@ function Card({name}: CardProps): JSX.Element {
                 ?
                     <>
                         <div className="bread-crumbs-wrapper">
-                            <BreadCrumbs />
+                            <BreadCrumbs perodData={periodDataForBreadCrumbs} />
                         </div>
                         <h6 className="card-title">{`рейс: ${name}`}</h6>
                         <div className="card-stats">
@@ -96,9 +111,15 @@ function Card({name}: CardProps): JSX.Element {
                     </>
                 :
                     <>
-                        <div className="bread-crumbs-wrapper">
-                            <BreadCrumbs />
-                        </div>
+                        {
+                            showedPeriod === PeriodName.AllYears
+                            ?
+                                ''
+                            :
+                                <div className="bread-crumbs-wrapper">
+                                    <BreadCrumbs perodData={periodDataForBreadCrumbs} />
+                                </div>
+                        }
                         <h6 className="card-title">{`${cardTitleName}`}</h6>
                         <div className="card-stats">
                             <div className="card-stat-line">{`Количество рейсов: ${flightsAmount}`}</div>

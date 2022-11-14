@@ -19,20 +19,28 @@ import {monthNames} from "../../settings/months-names";
 import {changeFlightsToShow} from "../../store/data-process/data-process";
 import BreadCrumbs from "../bread-crumbs/bread-crumbs";
 import {useEffect} from "react";
+import {PeriodData} from "../../types/period-data";
 
 function CardsSection(): JSX.Element {
     const dispatch = useAppDispatch();
     const allFlights = useAppSelector(getAllFlights);
     const showedPeriod = useAppSelector(getShowedPeriod);
-    const chosenYear = useAppSelector(getChosenYear) || '';
-    const chosenMonth = useAppSelector(getChosenMonth) || '';
-    const chosenDay = useAppSelector(getChosenDay) || '';
+    const chosenYear = useAppSelector(getChosenYear);
+    const chosenMonth = useAppSelector(getChosenMonth);
+    const chosenDay = useAppSelector(getChosenDay);
+    const yearTitle = chosenYear ? `${chosenYear}` : '';
+    const monthTitle = chosenMonth ? `${monthNames[chosenMonth]}` : '';
     const dayTitle = chosenDay ? `${chosenDay} число` : '';
+    const titleName = showedPeriod === PeriodName.AllYears ? 'все года' : `${yearTitle} ${monthTitle} ${dayTitle}`;
     let flightsToShow:FlightType[];
     const flightsPerYear = useAppSelector(getFligthsPerYear)
     const flightsPerMonth = useAppSelector(getFligthsPerMonth)
     const flightsPerDay = useAppSelector(getFligthsPerDay)
-    const titleName = showedPeriod === PeriodName.AllYears ? 'все года' : `${chosenYear} ${monthNames[+chosenMonth]} ${dayTitle}`;
+    const periodDataForBreadCrumbs:PeriodData = {
+        year: chosenYear,
+        month: chosenMonth,
+        day: chosenDay
+    }
 
     switch (showedPeriod) {
         case PeriodName.AllYears:
@@ -79,7 +87,13 @@ function CardsSection(): JSX.Element {
                     <div className="stat-line">{`Рабочее время по факту: ${convertTime(workTimeFact)}`}</div>
                     <div className="stat-line">{`Рабочее время по плану: ${convertTime(workTimePlan)}`}</div>
                 </div>
-                <BreadCrumbs />
+                {
+                    showedPeriod === PeriodName.AllYears
+                        ?
+                        ''
+                        :
+                        <BreadCrumbs perodData={periodDataForBreadCrumbs} />
+                }
             </div>
             <div className="cards-wrapper">
                 {
