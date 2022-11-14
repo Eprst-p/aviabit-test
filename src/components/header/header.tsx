@@ -8,7 +8,6 @@ function Header(): JSX.Element {
                 <h1 className="header-title">{commanderName}</h1>
                 <p className="search-form">Поиск</p>
                 <p className="filter-form">Фильтрация</p>
-                <p className="bread-crumbs">Хлебные крошки</p>
         </header>
     );
 }

@@ -81,18 +81,40 @@ function CardsSection(): JSX.Element {
         <section className="cards-section" >
             <div className="summary-stats-wrapper">
                 <h4 className="summary-stats-title">{`Сводная статистика за период: ${titleName}`}</h4>
-                <div className="summary-stats">
-                    <div className="stat-line">{`Количество рейсов: ${flightsAmount}`}</div>
-                    <div className="stat-line">{`Налет: ${convertTime(flightTime)}`}</div>
-                    <div className="stat-line">{`Рабочее время по факту: ${convertTime(workTimeFact)}`}</div>
-                    <div className="stat-line">{`Рабочее время по плану: ${convertTime(workTimePlan)}`}</div>
+                <div className="summary-stats-card">
+                    <div className="stat-name">{`Количество рейсов: `}</div>
+                    <div className="stat-value">{`${flightsAmount}`}</div>
+                    <div className="stat-name">{`Налет: `}</div>
+                    <div className="stat-value">{`${convertTime(flightTime)}`}</div>
+                    <div className="stat-name">{`Рабочее время:`}</div>
+                    <div className="stat-value"></div>
+                    {
+                        workTimeFact !== 0
+                            ?
+                                <>
+                                    <div className="stat-name">{` - фактическое: `}</div>
+                                    <div className="stat-value">{`${convertTime(workTimeFact)}`}</div>
+                                </>
+                            :
+                                ''
+                    }
+                    {
+                        workTimePlan !== 0
+                            ?
+                                <>
+                                    <div className="stat-name">{` - плановое: `}</div>
+                                    <div className="stat-value">{`${convertTime(workTimePlan)}`}</div>
+                                </>
+                            :
+                                ''
+                    }
                 </div>
                 {
                     showedPeriod === PeriodName.AllYears
                         ?
-                        ''
+                            ''
                         :
-                        <BreadCrumbs perodData={periodDataForBreadCrumbs} />
+                            <BreadCrumbs perodData={periodDataForBreadCrumbs} />
                 }
             </div>
             <div className="cards-wrapper">

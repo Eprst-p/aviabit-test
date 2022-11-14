@@ -98,15 +98,24 @@ function Card({name}: CardProps): JSX.Element {
                         </div>
                         <h6 className="card-title">{`рейс: ${name}`}</h6>
                         <div className="card-stats">
-                            <div className="card-stat-line">{`Налет: ${flight.timeFlight}`}</div>
-                            <div className="card-stat-line">{`Рабочее время ${workTimeName}: ${convertTime(flight.timeWork)}`}</div>
-                            <div className="card-stat-line">{`Воздушное судно: ${flight.plnType}`}</div>
-                            <div className="card-stat-line">{`Бортовой номер: ${flight.pln}`}</div>
-                            <div className="card-stat-line">{`Полетное время: ${convertTime(flight.timeBlock)}`}</div>
-                            <div className="card-stat-line">{`Ночное время: ${convertTime(flight.timeNight)}`}</div>
-                            <div className="card-stat-line">{`Биологическая ночь: ${convertTime(flight.timeBiologicalNight)}`}</div>
-                            <div className="card-stat-line">{`Аэродром вылета: ${flight.takeoff.name}`}</div>
-                            <div className="card-stat-line">{`Аэродром посадки: ${flight.landing.name}`}</div>
+                            <div className="stat-name">{`Налет: `}</div>
+                            <div className="stat-value">{`${flight.timeFlight}`}</div>
+                            <div className="stat-name">{`Рабочее время ${workTimeName}: `}</div>
+                            <div className="stat-value">{`${convertTime(flight.timeWork)}`}</div>
+                            <div className="stat-name">{`Воздушное судно: `}</div>
+                            <div className="stat-value">{`${flight.plnType}`}</div>
+                            <div className="stat-name">{`Бортовой номер: `}</div>
+                            <div className="stat-value">{`${flight.pln}`}</div>
+                            <div className="stat-name">{`Полетное время: `}</div>
+                            <div className="stat-value">{`${convertTime(flight.timeBlock)}`}</div>
+                            <div className="stat-name">{`Ночное время: `}</div>
+                            <div className="stat-value">{`${convertTime(flight.timeNight)}`}</div>
+                            <div className="stat-name">{`Биологическая ночь: `}</div>
+                            <div className="stat-value">{`${convertTime(flight.timeBiologicalNight)}`}</div>
+                            <div className="stat-name">{`Аэродром вылета: `}</div>
+                            <div className="stat-value">{`${flight.takeoff.name}`}</div>
+                            <div className="stat-name">{`Аэродром посадки: `}</div>
+                            <div className="stat-value">{`${flight.landing.name}`}</div>
                         </div>
                     </>
                 :
@@ -122,10 +131,32 @@ function Card({name}: CardProps): JSX.Element {
                         }
                         <h6 className="card-title">{`${cardTitleName}`}</h6>
                         <div className="card-stats">
-                            <div className="card-stat-line">{`Количество рейсов: ${flightsAmount}`}</div>
-                            <div className="card-stat-line">{`Налет: ${convertTime(flightTime)}`}</div>
-                            <div className="card-stat-line">{`Рабочее время по факту: ${convertTime(workTimeFact)}`}</div>
-                            <div className="card-stat-line">{`Рабочее время по плану: ${convertTime(workTimePlan)}`}</div>
+                            <div className="stat-name">{`Количество рейсов: `}</div>
+                            <div className="stat-value">{`${flightsAmount}`}</div>
+                            <div className="stat-name">{`Налет: `}</div>
+                            <div className="stat-value">{`${convertTime(flightTime)}`}</div>
+                            <div className="stat-name">{`Рабочее время:`}</div>
+                            <div className="stat-value"></div>
+                            {
+                                workTimeFact !== 0
+                                ?
+                                    <>
+                                        <div className="stat-name">{` - фактическое: `}</div>
+                                        <div className="stat-value">{`${convertTime(workTimeFact)}`}</div>
+                                    </>
+                                :
+                                    ''
+                            }
+                            {
+                                workTimePlan !== 0
+                                    ?
+                                    <>
+                                        <div className="stat-name">{` - плановое: `}</div>
+                                        <div className="stat-value">{`${convertTime(workTimePlan)}`}</div>
+                                    </>
+                                :
+                                    ''
+                            }
                         </div>
                         <button className="expand-btn" onClick={onExpandBtnClick}>Развернуть</button>
                     </>
