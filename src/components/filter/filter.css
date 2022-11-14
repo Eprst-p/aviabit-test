@@ -1,0 +1,19 @@
+.filter-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 5px;
+    padding: 5px;
+    font-size: calc(8px + 1vmin);
+}
+
+.filter-section fieldset {
+    margin: 5px;
+    border-radius: 10px;
+    width: 120px;
+}
+
+.filter-section legend {
+    font-size: calc(8px + 1vmin);
+}
+

@@ -4,7 +4,7 @@ import {
     getAllFlights,
     getChosenDay,
     getChosenMonth,
-    getChosenYear,
+    getChosenYear, getFilteredFlights,
     getFlightsPerDay,
     getFlightsPerMonth,
     getFlightsPerYear, getPeriodNames, getPeriodTitleName,
@@ -23,7 +23,7 @@ import {PeriodData} from "../../types/period-data";
 
 function CardsSection(): JSX.Element {
     const dispatch = useAppDispatch();
-    const allFlights = useAppSelector(getAllFlights);
+    const allFilteredFlights = useAppSelector(getFilteredFlights);
     const showedPeriod = useAppSelector(getShowedPeriod);
     const chosenYear = useAppSelector(getChosenYear);
     const chosenMonth = useAppSelector(getChosenMonth);
@@ -41,7 +41,7 @@ function CardsSection(): JSX.Element {
 
     switch (showedPeriod) {
         case PeriodName.AllYears:
-            flightsToShow = allFlights;
+            flightsToShow = allFilteredFlights;
             break;
         case PeriodName.Year:
             flightsToShow = flightsPerYear;
