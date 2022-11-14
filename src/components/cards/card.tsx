@@ -114,8 +114,16 @@ function Card({name}: CardProps): JSX.Element {
                             <div className="stat-value">{`${convertTime(flight.timeBiologicalNight)}`}</div>
                             <div className="stat-name">{`Аэродром вылета: `}</div>
                             <div className="stat-value">{`${flight.takeoff.name}`}</div>
+                            <div className="stat-name">{` - широта: `}</div>
+                            <div className="stat-value">{`${flight.takeoff.lat}`}</div>
+                            <div className="stat-name">{` - долгота: `}</div>
+                            <div className="stat-value">{`${flight.takeoff.long}`}</div>
                             <div className="stat-name">{`Аэродром посадки: `}</div>
                             <div className="stat-value">{`${flight.landing.name}`}</div>
+                            <div className="stat-name">{` - широта: `}</div>
+                            <div className="stat-value">{`${flight.landing.lat}`}</div>
+                            <div className="stat-name">{` - долгота: `}</div>
+                            <div className="stat-value">{`${flight.landing.long}`}</div>
                         </div>
                     </>
                 :

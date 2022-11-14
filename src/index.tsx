@@ -29,14 +29,7 @@ reportWebVitals();
 
 console.log(flights);
 
-const uniqueYears = new Set();
-flights.forEach(flight => {
-    const flightDate = new Date(flight.dateFlight);
-    const year = flightDate.getFullYear();
-    uniqueYears.add(year);
-});
 
-console.log(uniqueYears);
 
 
 

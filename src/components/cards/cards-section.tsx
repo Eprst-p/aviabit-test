@@ -5,9 +5,9 @@ import {
     getChosenDay,
     getChosenMonth,
     getChosenYear,
-    getFligthsPerDay,
-    getFligthsPerMonth,
-    getFligthsPerYear, getPeriodNames, getPeriodTitleName,
+    getFlightsPerDay,
+    getFlightsPerMonth,
+    getFlightsPerYear, getPeriodNames, getPeriodTitleName,
     getShowedPeriod
 } from "../../store/selectors";
 import {PeriodName} from "../../settings/period-name";
@@ -30,9 +30,9 @@ function CardsSection(): JSX.Element {
     const chosenDay = useAppSelector(getChosenDay);
     const titleName = useAppSelector(getPeriodTitleName);
     let flightsToShow:FlightType[];
-    const flightsPerYear = useAppSelector(getFligthsPerYear)
-    const flightsPerMonth = useAppSelector(getFligthsPerMonth)
-    const flightsPerDay = useAppSelector(getFligthsPerDay)
+    const flightsPerYear = useAppSelector(getFlightsPerYear)
+    const flightsPerMonth = useAppSelector(getFlightsPerMonth)
+    const flightsPerDay = useAppSelector(getFlightsPerDay)
     const periodDataForBreadCrumbs:PeriodData = {
         year: chosenYear,
         month: chosenMonth,

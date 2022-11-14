@@ -50,3 +50,4 @@ const createFlight = () => {
 
 export const flights = Array.from({length: 1000}, () => createFlight());
 
+
