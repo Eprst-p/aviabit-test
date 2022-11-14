@@ -10,15 +10,15 @@ import {
     Tooltip,
 } from 'chart.js';
 import {Line} from 'react-chartjs-2';
-import React, {useState} from "react";
-import {defaultSelectValue} from "../../settings/consts";
 import {createChartOptions} from "./chart-options";
 import {createChartData} from "./chart-data";
 import {useAppSelector} from "../../hooks/redux-hooks";
-import {getAllFlights, getSortOrder} from "../../store/selectors";
+import {
+    getFlightsToShow, getPeriodNames, getPeriodTitleName,
+    getShowedPeriod,
+} from "../../store/selectors";
 import {PeriodName} from "../../settings/period-name";
-import {getUniquePeriodsNames} from "../../settings/get-unique-periods-names";
-import {getFlightsPerPeriod} from "../../settings/get-flights-per-period";
+import {sortAsc} from "../../settings/sort-functions";
 
 
 ChartJS.register(
@@ -32,44 +32,19 @@ ChartJS.register(
 
 
 function ChartGraphs(): JSX.Element {
-    const allFlights = useAppSelector(getAllFlights);
-    const sortOrder = useAppSelector(getSortOrder);//нужен только для ререндера, довольно криво, но как есть пока
-    const years = getUniquePeriodsNames(allFlights, PeriodName.AllYears);
+    const showedPeriod = useAppSelector(getShowedPeriod);
+    const titleName = useAppSelector(getPeriodTitleName);
+    const periodNames = useAppSelector(getPeriodNames);
+    const flightsToShow = useAppSelector(getFlightsToShow);
 
-
-    const [selectedYear, setSelectedValue] = useState(defaultSelectValue);
-
-    const options = createChartOptions(selectedYear);
-
-    let data;
-    switch (selectedYear) {
-        case defaultSelectValue:
-            data = createChartData(allFlights, years, PeriodName.Year);
-            break;
-        default:
-            const flightsPerYear = getFlightsPerPeriod(allFlights, +selectedYear, PeriodName.Year);
-            const months = getUniquePeriodsNames(flightsPerYear, PeriodName.Month);
-            data = createChartData(flightsPerYear, months, PeriodName.Month);
-            break;
+    if (showedPeriod !== PeriodName.Day) {
+        periodNames.sort(sortAsc);
     }
-
-    const handleOnChange = (evt: React.ChangeEvent<HTMLSelectElement>) => {
-       setSelectedValue(evt.target.value);
-    }
+    const data = createChartData(flightsToShow, periodNames, showedPeriod)
+    const options = createChartOptions(titleName);
 
     return (
        <section className="graph-section">
-           <div className="chose-year-container">
-               <p className="chose-year-title">Отобразить график за:</p>
-               <select className="year-selecter" onChange={handleOnChange} defaultValue={defaultSelectValue}>
-                   <option className="select-option" value={defaultSelectValue}>{defaultSelectValue}</option>
-                   {
-                       years.map((year) =>
-                           <option className="select-option" key={year} value={year}>{year}</option>
-                       )
-                   }
-               </select>
-           </div>
            <Line options={options} data={data} />
        </section>
     );

@@ -3,12 +3,17 @@ import {FlightType} from "../../types/flight-type";
 import {PeriodName} from "../../settings/period-name";
 import {monthNames} from "../../settings/months-names";
 import {WorkTimeType} from "../../settings/work-time-type";
-import {sortAsc} from "../../settings/sort-functions";
+import {convertTime} from "../../settings/convert-time";
 
-export const createChartData = (allFlights:FlightType[], xAxisElements: string[], periodPerData: PeriodName) => {
-
-    if (periodPerData === PeriodName.Month) {
-        xAxisElements.sort(sortAsc);
+export const createChartData = (flightsToShow:FlightType[], xAxisElements: string[], showedPeriod: PeriodName) => {
+    let periodPerData:PeriodName = PeriodName.Year;
+    switch (showedPeriod) {
+        case PeriodName.Year:
+            periodPerData = PeriodName.Month;
+            break;
+        case PeriodName.Month || PeriodName.Day:
+            periodPerData = PeriodName.Day;
+            break;
     }
 
     const createXvalue = (element:string) => {
@@ -21,14 +26,15 @@ export const createChartData = (allFlights:FlightType[], xAxisElements: string[]
     }
 
     const createYvalue = (workTimeType: WorkTimeType, element:string) => {
-        const flightsPerPeriod = getFlightsPerPeriod(allFlights, +element, periodPerData);
+        const flightsPerPeriod = getFlightsPerPeriod(flightsToShow, +element, periodPerData);
         let y: number = 0;
         flightsPerPeriod.forEach((flight) => {
             if (flight.type === workTimeType) {
                 y += flight.timeWork;
             }
         });
-        return y;
+        const hourSymbol = convertTime(y).indexOf('ч');
+        return +convertTime(y).slice(0, hourSymbol);
     };
 
 

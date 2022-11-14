@@ -5,7 +5,7 @@ import {SortOrder} from "../../settings/sort-order";
 
 const initialState: InterfaceProcess = {
    sortOrder: SortOrder.Asc,
-};
+    };
 
 export const interfaceProcess = createSlice({
   name: NameSpace.Interface,

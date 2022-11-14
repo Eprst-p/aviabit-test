@@ -1,7 +1,9 @@
 import {State} from '../types/state';
 import {createSelector} from "reselect";
 import {PeriodName} from "../settings/period-name";
+import {monthNames} from "../settings/months-names";
 
+//data-process
 export const getAllFlights = (state:State) => state.DATA.allFlights;
 export const getFlightsToShow = (state:State) => state.DATA.flightsToShow;
 export const getShowedPeriod = (state:State) => state.DATA.showedPeriod;
@@ -53,5 +55,11 @@ export const getPeriodNames = createSelector(getFlightsToShow, getShowedPeriod, 
 
 
 
-
+//interface-process
 export const getSortOrder = (state:State) => state.INTERFACE.sortOrder;
+export const getPeriodTitleName = createSelector(getShowedPeriod, getChosenYear, getChosenMonth, getChosenDay, (showedPeriod, year, month, day) => {
+    const yearTitle = year ? `${year}` : '';
+    const monthTitle = month ? `${monthNames[month]}` : '';
+    const dayTitle = day ? `${day} число` : '';
+    return showedPeriod === PeriodName.AllYears ? 'все года' : `${yearTitle} ${monthTitle} ${dayTitle}`;
+});

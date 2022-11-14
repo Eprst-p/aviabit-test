@@ -7,7 +7,7 @@ import {
     getChosenYear,
     getFligthsPerDay,
     getFligthsPerMonth,
-    getFligthsPerYear, getPeriodNames,
+    getFligthsPerYear, getPeriodNames, getPeriodTitleName,
     getShowedPeriod
 } from "../../store/selectors";
 import {PeriodName} from "../../settings/period-name";
@@ -28,10 +28,7 @@ function CardsSection(): JSX.Element {
     const chosenYear = useAppSelector(getChosenYear);
     const chosenMonth = useAppSelector(getChosenMonth);
     const chosenDay = useAppSelector(getChosenDay);
-    const yearTitle = chosenYear ? `${chosenYear}` : '';
-    const monthTitle = chosenMonth ? `${monthNames[chosenMonth]}` : '';
-    const dayTitle = chosenDay ? `${chosenDay} число` : '';
-    const titleName = showedPeriod === PeriodName.AllYears ? 'все года' : `${yearTitle} ${monthTitle} ${dayTitle}`;
+    const titleName = useAppSelector(getPeriodTitleName);
     let flightsToShow:FlightType[];
     const flightsPerYear = useAppSelector(getFligthsPerYear)
     const flightsPerMonth = useAppSelector(getFligthsPerMonth)

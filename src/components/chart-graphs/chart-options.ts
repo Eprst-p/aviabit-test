@@ -1,5 +1,5 @@
 
-export const createChartOptions = (selectedYear: string) => ({
+export const createChartOptions = (titleName: string) => ({
      plugins: {
          legend: {
              position: 'top' as const,
@@ -12,7 +12,7 @@ export const createChartOptions = (selectedYear: string) => ({
          },
          title: {
              display: true,
-             text: `График фактического и планового налета за ${selectedYear}`,
+             text: `График фактического и планового налета за ${titleName}`,
              color: "white",
              font: {
                  size: 20,
@@ -20,6 +20,7 @@ export const createChartOptions = (selectedYear: string) => ({
          },
      },
      scales: {
+
          xAxes: {
              ticks: {
                  color: "white",
@@ -29,6 +30,16 @@ export const createChartOptions = (selectedYear: string) => ({
              },
          },
          yAxes: {
+             title: {
+                 display: true,
+                 text: 'время в часах',
+                 color: "white",
+                 padding: 1,
+                 font: {
+                     size: 17,
+                 }
+             },
+
              ticks: {
                  color: "white",
                  font: {
