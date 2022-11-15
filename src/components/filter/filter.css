@@ -13,7 +13,30 @@
     width: 120px;
 }
 
+#airport-fieldset {
+    width: 140px;
+}
+
 .filter-section legend {
     font-size: calc(8px + 1vmin);
 }
+
+.filter-selector {
+    margin: 5px 10px;
+    height: 30px;
+    width: 100px;
+    border-radius: 10px;
+    background: #0e8c8c;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    font-size: calc(8px + 1vmin);
+    color: white;
+    border: 1px solid #021331
+}
+
+#airport-selector {
+    width: 180px;
+}
+
 

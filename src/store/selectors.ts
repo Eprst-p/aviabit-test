@@ -21,24 +21,48 @@ export const getPeriodTitleName = createSelector(getShowedPeriod, getChosenYear,
 });
 export const getWorkTypeFilter = (state:State) => state.INTERFACE.workTimeTypeFilter;
 export const getPlaneTypeFilter = (state:State) => state.INTERFACE.planeTypeFilter;
+export const getSideNumberFilter = (state:State) => state.INTERFACE.sideNumberFilter;
+export const getTakeOffAirportFilter = (state:State) => state.INTERFACE.takeOffAirportFilter;
+export const getLandingAirportFilter = (state:State) => state.INTERFACE.landingAirportFilter;
 
 //filter
 export const getFilteredFlights = createSelector(
     getAllFlights,
     getWorkTypeFilter,
     getPlaneTypeFilter,
-        (allFlights, workType, planeType) => {
+    getSideNumberFilter,
+    getTakeOffAirportFilter,
+    getLandingAirportFilter,
+        (allFlights,
+         workType,
+         planeType,
+         sideNumber,
+         takeOffAirport,
+         landingAirport
+        ) => {
             return allFlights.filter((flight) => {
-                let isWorkTypeFiltered = true;
-                let isPlaneTypeFiltered = true;
+                let workTypeFilter = true;
+                let planeTypeFilter = true;
+                let sideNumberFilter = true;
+                let takeOffAirportFilter = true;
+                let landingAirportFilter = true;
 
                 if (workType !== undefined) {
-                    isWorkTypeFiltered = flight.type === workType;
+                    workTypeFilter = flight.type === workType;
                 }
                 if (planeType) {
-                    isPlaneTypeFiltered = flight.plnType === planeType
+                    planeTypeFilter = flight.plnType === planeType
                 }
-                return isWorkTypeFiltered && isPlaneTypeFiltered;
+                if (sideNumber) {
+                    sideNumberFilter = flight.pln === sideNumber
+                }
+                if (takeOffAirport) {
+                    takeOffAirportFilter = flight.takeoff.name === takeOffAirport
+                }
+                if (landingAirport) {
+                    landingAirportFilter = flight.landing.name === landingAirport
+                }
+                return workTypeFilter && planeTypeFilter && sideNumberFilter && takeOffAirportFilter && landingAirportFilter;
             })
 });
 

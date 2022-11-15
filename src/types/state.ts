@@ -17,6 +17,9 @@ export type InterfaceProcess = {
   sortOrder: SortOrder;
   workTimeTypeFilter: WorkTimeType | undefined;
   planeTypeFilter: string | undefined;
+  sideNumberFilter: string | undefined;
+  takeOffAirportFilter: string | undefined;
+  landingAirportFilter: string | undefined;
 };
 
 export type State = ReturnType<typeof store.getState>;

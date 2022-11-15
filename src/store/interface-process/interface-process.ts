@@ -7,6 +7,9 @@ const initialState: InterfaceProcess = {
    sortOrder: SortOrder.Asc,
     workTimeTypeFilter: undefined,
     planeTypeFilter: undefined,
+    sideNumberFilter: undefined,
+    takeOffAirportFilter: undefined,
+    landingAirportFilter: undefined,
 };
 
 export const interfaceProcess = createSlice({
@@ -16,7 +19,10 @@ export const interfaceProcess = createSlice({
     changeSortOrder: (state, {payload}) => {state.sortOrder = payload;},
     changeWorkTimeFilter: (state, {payload}) => {state.workTimeTypeFilter = payload;},
     changePlaneTypeFilter: (state, {payload}) => {state.planeTypeFilter = payload;},
+    changeSideNumberFilter: (state, {payload}) => {state.sideNumberFilter = payload;},
+    changeTakeOffAirportFilter: (state, {payload}) => {state.takeOffAirportFilter = payload;},
+    changeLandingAirportFilter: (state, {payload}) => {state.landingAirportFilter = payload;},
   },
 });
 
-export const {changeSortOrder, changeWorkTimeFilter, changePlaneTypeFilter} = interfaceProcess.actions;
+export const {changeSortOrder, changeWorkTimeFilter, changePlaneTypeFilter, changeSideNumberFilter, changeTakeOffAirportFilter, changeLandingAirportFilter} = interfaceProcess.actions;

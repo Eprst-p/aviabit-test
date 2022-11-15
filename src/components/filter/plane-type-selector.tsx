@@ -1,4 +1,3 @@
-import './plane-type-selector.css';
 import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
 import {getFilteredFlights} from "../../store/selectors";
 import React from "react";
@@ -25,8 +24,8 @@ function PlaneTypeSelector(): JSX.Element {
     return (
         <fieldset className="plane-type-selection-filedset">
             <legend className="plane-type-selection-legend">Тип возд судна</legend>
-            <select className="plane-type-select" defaultValue={defaultSelectValue} onChange={onSelectChange}>
-                <option className="plane-type-option" value="любое">{defaultSelectValue}</option>
+            <select className="filter-selector plane-type-select" defaultValue={defaultSelectValue} onChange={onSelectChange}>
+                <option className="plane-type-option" value={defaultSelectValue}>{defaultSelectValue}</option>
                 {
                     allPlaneTypes.map((planeType) =>
                         <option className="plane-type-option" value={planeType} key={planeType}>{planeType}</option>
