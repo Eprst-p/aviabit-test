@@ -7,4 +7,10 @@ const sortDesc = (first:string, second:string) => {
     return +second - +first;
 };
 
-export {sortAsc, sortDesc};
+const sortByISODate = (first:string, second:string) => {
+    const firstDate = new Date(first);
+    const secondDate = new Date(second);
+    return +firstDate - +secondDate;
+};
+
+export {sortAsc, sortDesc, sortByISODate};

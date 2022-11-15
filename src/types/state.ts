@@ -20,6 +20,8 @@ export type InterfaceProcess = {
   sideNumberFilter: string | undefined;
   takeOffAirportFilter: string | undefined;
   landingAirportFilter: string | undefined;
+  startDateFilter: string | undefined;
+  endDateFilter: string | undefined;
 };
 
 export type State = ReturnType<typeof store.getState>;

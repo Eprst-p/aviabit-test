@@ -2,6 +2,7 @@ import {State} from '../types/state';
 import {createSelector} from "reselect";
 import {PeriodName} from "../settings/period-name";
 import {monthNames} from "../settings/months-names";
+import {getDayFromIso, getMonthFromIso, getYearFromIso} from "../settings/getDateFromIso";
 
 //data-process
 export const getAllFlights = (state:State) => state.DATA.allFlights;
@@ -24,6 +25,8 @@ export const getPlaneTypeFilter = (state:State) => state.INTERFACE.planeTypeFilt
 export const getSideNumberFilter = (state:State) => state.INTERFACE.sideNumberFilter;
 export const getTakeOffAirportFilter = (state:State) => state.INTERFACE.takeOffAirportFilter;
 export const getLandingAirportFilter = (state:State) => state.INTERFACE.landingAirportFilter;
+export const getStartDateFilter = (state:State) => state.INTERFACE.startDateFilter;
+export const getEndDateFilter = (state:State) => state.INTERFACE.endDateFilter;
 
 //filter
 export const getFilteredFlights = createSelector(
@@ -33,12 +36,16 @@ export const getFilteredFlights = createSelector(
     getSideNumberFilter,
     getTakeOffAirportFilter,
     getLandingAirportFilter,
+    getStartDateFilter,
+    getEndDateFilter,
         (allFlights,
          workType,
          planeType,
          sideNumber,
          takeOffAirport,
-         landingAirport
+         landingAirport,
+         startDate,
+         endDate,
         ) => {
             return allFlights.filter((flight) => {
                 let workTypeFilter = true;
@@ -46,6 +53,8 @@ export const getFilteredFlights = createSelector(
                 let sideNumberFilter = true;
                 let takeOffAirportFilter = true;
                 let landingAirportFilter = true;
+                let startDateFilter = true;
+                let endDateFilter = true;
 
                 if (workType !== undefined) {
                     workTypeFilter = flight.type === workType;
@@ -62,7 +71,37 @@ export const getFilteredFlights = createSelector(
                 if (landingAirport) {
                     landingAirportFilter = flight.landing.name === landingAirport
                 }
-                return workTypeFilter && planeTypeFilter && sideNumberFilter && takeOffAirportFilter && landingAirportFilter;
+                if (startDate) {
+                    const flightYear = getYearFromIso(flight.dateFlight);
+                    const flatpickrYear = getYearFromIso(startDate);
+                    const flightMonth = getMonthFromIso(flight.dateFlight);
+                    const flatpickrMonth = getMonthFromIso(startDate);
+                    const flightDay = getDayFromIso(flight.dateFlight);
+                    const flatpickrDay = getDayFromIso(startDate);
+                    const dateFlight = new Date(flightYear, flightMonth, flightDay);
+                    const dateFlatPicker = new Date(flatpickrYear, flatpickrMonth, flatpickrDay);
+                    startDateFilter = dateFlight >= dateFlatPicker;
+                }
+                if (endDate) {
+                    const flightYear = getYearFromIso(flight.dateFlight);
+                    const flatpickrYear = getYearFromIso(endDate);
+                    const flightMonth = getMonthFromIso(flight.dateFlight);
+                    const flatpickrMonth = getMonthFromIso(endDate);
+                    const flightDay = getDayFromIso(flight.dateFlight);
+                    const flatpickrDay = getDayFromIso(endDate);
+                    const dateFlight = new Date(flightYear, flightMonth, flightDay);
+                    const dateFlatPicker = new Date(flatpickrYear, flatpickrMonth, flatpickrDay);
+                    endDateFilter = dateFlight <= dateFlatPicker;
+                }
+                return (
+                    workTypeFilter &&
+                    planeTypeFilter &&
+                    sideNumberFilter &&
+                    takeOffAirportFilter &&
+                    landingAirportFilter &&
+                    startDateFilter &&
+                    endDateFilter
+                );
             })
 });
 
