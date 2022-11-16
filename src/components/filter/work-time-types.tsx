@@ -28,9 +28,15 @@ function WorkTimeTypes(): JSX.Element {
         <fieldset className="work-time-types-filedset">
             <legend className="work-time-types-legend">Рабочее время</legend>
             <div className="work-time-types-wrapper">
-                <p><input className="work-time-radio" name="work-time-radio" value="fact" type="radio" onChange={onRadioChange}/>факт</p>
-                <p><input className="work-time-radio" name="work-time-radio" value="plan" type="radio" onChange={onRadioChange}/>план</p>
-                <p><input className="work-time-radio" name="work-time-radio" value="all" type="radio" onChange={onRadioChange} defaultChecked={true}/>все</p>
+                <label className="radio-label">
+                    <input className="work-time-radio" name="work-time-radio" value="fact" type="radio" onChange={onRadioChange}/>факт
+                </label>
+                <label className="radio-label">
+                    <input className="work-time-radio" name="work-time-radio" value="plan" type="radio" onChange={onRadioChange}/>план
+                </label>
+                <label className="radio-label">
+                    <input className="work-time-radio" name="work-time-radio" value="all" type="radio" onChange={onRadioChange} defaultChecked={true}/>все
+                </label>
             </div>
         </fieldset>
     );

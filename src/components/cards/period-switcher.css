@@ -1,17 +1,25 @@
-.work-time-types-wrapper {
+.period-switcher-fieldset {
+    margin: 5px;
+    border-radius: 10px;
+    width: 120px;
+    font-size: calc(8px + 1vmin);
+
+}
+
+.period-switcher-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+    }
 
-.radio-label {
+.period-label {
     display: inline-flex;
     justify-content: flex-start;
     font-size: calc(10px + 1vmin);
     width: 70px;
 }
 
-.work-time-radio {
+.period-radio {
     margin-right: 10px;
     horiz-align: left;
     width: 15px;
