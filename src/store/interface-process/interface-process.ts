@@ -12,6 +12,7 @@ const initialState: InterfaceProcess = {
     landingAirportFilter: undefined,
     startDateFilter: undefined,
     endDateFilter: undefined,
+    searchedFlight: undefined,
 };
 
 export const interfaceProcess = createSlice({
@@ -26,6 +27,7 @@ export const interfaceProcess = createSlice({
     changeLandingAirportFilter: (state, {payload}) => {state.landingAirportFilter = payload;},
     changeStartDateFilter: (state, {payload}) => {state.startDateFilter = payload;},
     changeEndDateFilter: (state, {payload}) => {state.endDateFilter = payload;},
+    changeSearchedFlight: (state, {payload}) => {state.searchedFlight = payload;},
   },
 });
 
@@ -38,4 +40,5 @@ export const {
     changeLandingAirportFilter,
     changeStartDateFilter,
     changeEndDateFilter,
+    changeSearchedFlight,
 } = interfaceProcess.actions;

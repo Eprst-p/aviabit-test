@@ -22,6 +22,7 @@ export type InterfaceProcess = {
   landingAirportFilter: string | undefined;
   startDateFilter: string | undefined;
   endDateFilter: string | undefined;
+  searchedFlight: string | undefined;
 };
 
 export type State = ReturnType<typeof store.getState>;

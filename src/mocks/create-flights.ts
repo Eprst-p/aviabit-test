@@ -3,7 +3,7 @@ import {getRandomElement, getRandomPositiveNumber} from "./randomaizers";
 import {fligthNumbers, planeNumber, planeTypes} from "./names";
 import {airports} from "./airports";
 import {Airport} from "../types/airport";
-
+import { faker } from '@faker-js/faker';
 
 const createFlight = () => {
     const timeFlight = getRandomPositiveNumber(15000, 45000);
@@ -32,9 +32,11 @@ const createFlight = () => {
         return +(currentDate < date);
     }
 
+    const createFlightName = () => `${faker.name.firstName().slice(0,2).toUpperCase()}-${faker.address.zipCode('######')}`;
+
     return ({
     dateFlight: date.toISOString(),
-    flight: getRandomElement(fligthNumbers),
+    flight: createFlightName(),
     plnType: getRandomElement(planeTypes),
     pln: getRandomElement(planeNumber),
     timeFlight: timeFlight,

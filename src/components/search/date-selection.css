@@ -11,10 +11,3 @@
     border: 1px solid #021331;
     text-align: center;
 }
-
-.date-selection-fieldset {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}

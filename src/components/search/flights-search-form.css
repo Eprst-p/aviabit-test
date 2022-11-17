@@ -1,0 +1,63 @@
+#flights-search-fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.form-search-flights {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.form-search-input {
+    width: 180px;
+    height: 30px;
+    background: #0e8c8c;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    font-size: calc(8px + 1vmin);
+    color: white;
+    border: 1px solid #021331;
+    border-radius: 10px;
+    padding-left: 5px;
+}
+
+.form-search-input::placeholder {
+    color: #a5b6b6;
+}
+
+.form-search-select-list {
+    display: inline-block;
+    position: absolute;
+    width: 180px;
+    margin-top: 45px;
+    background: #0e8c8c;
+    border: 1px solid #021331;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.form-search__select-item {
+    list-style-type: none;
+    padding: 2px 5px 2px 5px;
+    text-align: left;
+}
+
+.form-search__select-item:hover {
+    color: #031c48;
+    cursor: pointer;
+}
+
+.list-opened {
+    visibility: visible;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+
+
+

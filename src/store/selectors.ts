@@ -27,6 +27,7 @@ export const getTakeOffAirportFilter = (state:State) => state.INTERFACE.takeOffA
 export const getLandingAirportFilter = (state:State) => state.INTERFACE.landingAirportFilter;
 export const getStartDateFilter = (state:State) => state.INTERFACE.startDateFilter;
 export const getEndDateFilter = (state:State) => state.INTERFACE.endDateFilter;
+export const getSearchedFlight = (state:State) => state.INTERFACE.searchedFlight;
 
 //filter
 export const getFilteredFlights = createSelector(
@@ -38,6 +39,7 @@ export const getFilteredFlights = createSelector(
     getLandingAirportFilter,
     getStartDateFilter,
     getEndDateFilter,
+    getSearchedFlight,
         (allFlights,
          workType,
          planeType,
@@ -46,6 +48,7 @@ export const getFilteredFlights = createSelector(
          landingAirport,
          startDate,
          endDate,
+         searchedFlight,
         ) => {
             return allFlights.filter((flight) => {
                 let workTypeFilter = true;
@@ -55,6 +58,7 @@ export const getFilteredFlights = createSelector(
                 let landingAirportFilter = true;
                 let startDateFilter = true;
                 let endDateFilter = true;
+                let searchedFLightFilter = true;
 
                 if (workType !== undefined) {
                     workTypeFilter = flight.type === workType;
@@ -93,6 +97,10 @@ export const getFilteredFlights = createSelector(
                     const dateFlatPicker = new Date(flatpickrYear, flatpickrMonth, flatpickrDay);
                     endDateFilter = dateFlight <= dateFlatPicker;
                 }
+                if (searchedFlight) {
+                    searchedFLightFilter = flight.flight === searchedFlight
+                }
+
                 return (
                     workTypeFilter &&
                     planeTypeFilter &&
@@ -100,13 +108,14 @@ export const getFilteredFlights = createSelector(
                     takeOffAirportFilter &&
                     landingAirportFilter &&
                     startDateFilter &&
-                    endDateFilter
+                    endDateFilter &&
+                    searchedFLightFilter
                 );
             })
 });
 
 
-//getPerPeriod
+//reselectors
 export const getFlightsPerYear = createSelector(getFilteredFlights, getChosenYear, (flights, year) => {
     return flights.filter((flight)=> {
         const flightDate = new Date(flight.dateFlight);
@@ -149,6 +158,11 @@ export const getPeriodNames = createSelector(getFlightsToShow, getShowedPeriod, 
     });
     return Array.from(uniqueNames);
 });
+
+export const getFlightNames = createSelector(getAllFlights, (flights) => {
+    return flights.map((flight)=> flight.flight);
+});
+
 
 
 
