@@ -16,7 +16,7 @@
 .stats-section {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 
 .summary-stats-title {

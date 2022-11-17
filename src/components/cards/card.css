@@ -20,7 +20,6 @@
     grid-template-columns: 2fr 1fr;
     margin-top: 30px;
     font-size: calc(8px + 1vmin);
-
 }
 
 .stat-name {
@@ -42,7 +41,6 @@
     color: white;
     margin: 10px;
     align-self: self-end;
-
 }
 
 .expand-btn:hover {

@@ -1,0 +1,20 @@
+.cancel-filters-btn-wrapper {
+    margin-right: 100px;
+}
+
+.cancel-filters-btn {
+    background-color: #0a5050;
+    border: 2px solid #021331;
+    border-radius: 10px;
+    width: 140px;
+    height: 40px;
+    color: white;
+    margin: 10px;
+    align-self: self-end;
+}
+
+.cancel-filters-btn:hover {
+    background-color: gold;
+    color: #031c48;
+    font-weight: bold;
+}

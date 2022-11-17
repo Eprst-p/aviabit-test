@@ -17,6 +17,7 @@ import {
 } from "../../store/selectors";
 import {FlightType} from "../../types/flight-type";
 import {PeriodData} from "../../types/period-data";
+import CancelFiltersBtn from "./cancel-filters-btn";
 
 
 function SummaryStats(): JSX.Element {
@@ -72,6 +73,7 @@ function SummaryStats(): JSX.Element {
         <div className="summary-stats-wrapper">
             <h4 className="summary-stats-title">{`Сводная статистика за период: ${titleName}`}</h4>
             <section className="stats-section">
+                <CancelFiltersBtn />
                 <div className="summary-stats-card">
                     <div className="stat-name">{`Количество рейсов: `}</div>
                     <div className="stat-value">{`${flightsAmount}`}</div>

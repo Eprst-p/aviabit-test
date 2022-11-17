@@ -1,7 +1,7 @@
 import './flights-search-form.css';
 import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
-import React, {useRef, useState} from "react";
-import {getFlightNames} from "../../store/selectors";
+import React, {useEffect, useRef, useState} from "react";
+import {getFlightNames, getSearchedFlight} from "../../store/selectors";
 import {changeSearchedFlight} from "../../store/interface-process/interface-process";
 
 function FlightsSearchForm(): JSX.Element {
@@ -10,6 +10,7 @@ function FlightsSearchForm(): JSX.Element {
     const flightsNames = useAppSelector(getFlightNames);
     const [isOpenedSelectList, setSelectListStatus] = useState(false);
     const [flightsLikeTyped, setFlightsLikeTyped] = useState<string[]>([])
+    const searchedFlight = useAppSelector(getSearchedFlight)
 
     const handleSearchFieldOnInput = () => {
         if (searchField.current?.value !== '') {
@@ -41,6 +42,13 @@ function FlightsSearchForm(): JSX.Element {
         }
     }
 
+    useEffect(() => {
+        if (searchedFlight === undefined) {
+            if (searchField.current?.value !== undefined) {
+                searchField.current.value = '';
+            }
+        }
+    }, [searchedFlight]);
 
     return (
         <fieldset className="flights-search-fieldset" id="flights-search-fieldset">
