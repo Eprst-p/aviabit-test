@@ -6,50 +6,47 @@ import {
     changeChosenDay,
     changeChosenMonth,
     changeChosenYear,
-    changeShowedPeriod
+    changeShowedCardsPeriod
 } from "../../store/data-process/data-process";
-import {PeriodName} from "../../settings/period-name";
+import {ShowedCardsPeriods} from "../../settings/showed-cards-periods";
 import {PeriodData} from "../../types/period-data";
 
 type BreadCrumbsProps = {
-    perodData: PeriodData
+    periodData: PeriodData
 }
 
-function BreadCrumbs({perodData}: BreadCrumbsProps): JSX.Element {
+function BreadCrumbs({periodData}: BreadCrumbsProps): JSX.Element {
     const dispatch = useAppDispatch();
-    const chosenYear = useAppSelector(getChosenYear);
-    const chosenMonth = useAppSelector(getChosenMonth);
-    const chosenDay = useAppSelector(getChosenDay);
+    const {year, month, day} = periodData;
 
     const onAllYearsCrumbClick = () => {
-        dispatch(changeShowedPeriod(PeriodName.AllYears));
+        dispatch(changeShowedCardsPeriod(ShowedCardsPeriods.Years));
         dispatch(changeChosenYear(undefined));
         dispatch(changeChosenMonth(undefined));
         dispatch(changeChosenDay(undefined));
     }
 
     const onYearCrumbClick = () => {
-        dispatch(changeShowedPeriod(PeriodName.Year));
-        dispatch(changeChosenYear(chosenYear));
+        dispatch(changeShowedCardsPeriod(ShowedCardsPeriods.Months));
+        dispatch(changeChosenYear(year));
         dispatch(changeChosenMonth(undefined));
         dispatch(changeChosenDay(undefined));
     }
 
     const onMonthCrumbClick = () => {
-        dispatch(changeShowedPeriod(PeriodName.Month));
-        dispatch(changeChosenYear(chosenYear));
-        dispatch(changeChosenMonth(chosenMonth));
+        dispatch(changeShowedCardsPeriod(ShowedCardsPeriods.Days));
+        dispatch(changeChosenYear(year));
+        dispatch(changeChosenMonth(month));
         dispatch(changeChosenDay(undefined));
     }
-
 
 
     return (
         <ul className="bread-crumbs">
             <li className="crumb-element" onClick={onAllYearsCrumbClick}>{`Все года`}</li>
-            {chosenYear ? <li className="crumb-element" onClick={onYearCrumbClick}>{` -> ${chosenYear}`}</li> : ''}
-            {chosenMonth ? <li className="crumb-element" onClick={onMonthCrumbClick}>{` -> ${monthNames[+chosenMonth]}`}</li> : ''}
-            {chosenDay ? <li className="crumb-element">{` -> ${chosenDay} число`}</li> : ''}
+            {year ? <li className="crumb-element" onClick={onYearCrumbClick}>{` -> ${year}`}</li> : ''}
+            {month ? <li className="crumb-element" onClick={onMonthCrumbClick}>{` -> ${monthNames[+month]}`}</li> : ''}
+            {day ? <li className="crumb-element">{` -> ${day} число`}</li> : ''}
         </ul>
     );
 }

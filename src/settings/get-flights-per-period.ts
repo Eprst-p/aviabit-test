@@ -1,5 +1,6 @@
 import {FlightType} from "../types/flight-type";
-import {PeriodName} from "./period-name";
+import {ShowedCardsPeriods} from "./showed-cards-periods";
+import {PeriodName} from "./PeriodName";
 
 
 export const getFlightsPerPeriod = (enterFlightsArr: FlightType[], period: number, periodName: PeriodName) => {
@@ -7,8 +8,8 @@ export const getFlightsPerPeriod = (enterFlightsArr: FlightType[], period: numbe
         const flightDate = new Date(flight.dateFlight);
         let currentPeriod = 0;
         switch (periodName) {
-            case PeriodName.AllYears:
-                return enterFlightsArr;
+            // case PeriodName.Year:
+            //     return enterFlightsArr;
             case PeriodName.Year:
                 currentPeriod = flightDate.getFullYear();
                 break;

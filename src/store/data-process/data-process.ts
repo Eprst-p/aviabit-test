@@ -1,12 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../settings/name-space';
 import {DataProcess} from '../../types/state';
-import {PeriodName} from "../../settings/period-name";
+import {ShowedCardsPeriods} from "../../settings/showed-cards-periods";
 
 const initialState: DataProcess = {
     allFlights: [],
     flightsToShow: [],
-    showedPeriod: PeriodName.AllYears,
+    showedCardsPeriods: ShowedCardsPeriods.Years,
     chosenYear: undefined,
     chosenMonth: undefined,
     chosenDay: undefined,
@@ -18,11 +18,11 @@ export const dataProcess = createSlice({
     reducers: {
         loadFlights: (state, {payload}) => {state.allFlights = payload},
         changeFlightsToShow: (state, {payload}) => {state.flightsToShow = payload},
-        changeShowedPeriod: (state, {payload}) => {state.showedPeriod = payload},
+        changeShowedCardsPeriod: (state, {payload}) => {state.showedCardsPeriods = payload},
         changeChosenYear: (state, {payload}) => {state.chosenYear = payload},
         changeChosenMonth: (state, {payload}) => {state.chosenMonth = payload},
         changeChosenDay: (state, {payload}) => {state.chosenDay = payload},
     },
 });
 
-export const {loadFlights, changeFlightsToShow, changeShowedPeriod, changeChosenYear, changeChosenMonth, changeChosenDay } = dataProcess.actions;
+export const {loadFlights, changeFlightsToShow, changeShowedCardsPeriod, changeChosenYear, changeChosenMonth, changeChosenDay } = dataProcess.actions;

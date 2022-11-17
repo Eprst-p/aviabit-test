@@ -1,17 +1,18 @@
 import {getFlightsPerPeriod} from "../../settings/get-flights-per-period";
 import {FlightType} from "../../types/flight-type";
-import {PeriodName} from "../../settings/period-name";
+import {ShowedCardsPeriods} from "../../settings/showed-cards-periods";
 import {monthNames} from "../../settings/months-names";
 import {WorkTimeType} from "../../settings/work-time-type";
 import {convertTime} from "../../settings/convert-time";
+import {PeriodName} from "../../settings/PeriodName";
 
-export const createChartData = (flightsToShow:FlightType[], xAxisElements: string[], showedPeriod: PeriodName) => {
+export const createChartData = (flightsToShow:FlightType[], xAxisElements: string[], showedPeriod: ShowedCardsPeriods) => {
     let periodPerData:PeriodName = PeriodName.Year;
     switch (showedPeriod) {
-        case PeriodName.Year:
+        case ShowedCardsPeriods.Months:
             periodPerData = PeriodName.Month;
             break;
-        case PeriodName.Month || PeriodName.Day:
+        case ShowedCardsPeriods.Days || ShowedCardsPeriods.SingleFlights:
             periodPerData = PeriodName.Day;
             break;
     }

@@ -15,9 +15,9 @@ import {createChartData} from "./chart-data";
 import {useAppSelector} from "../../hooks/redux-hooks";
 import {
     getFlightsToShow, getPeriodNames, getPeriodTitleName,
-    getShowedPeriod,
+    getShowedCardsPeriods,
 } from "../../store/selectors";
-import {PeriodName} from "../../settings/period-name";
+import {ShowedCardsPeriods} from "../../settings/showed-cards-periods";
 import {sortAsc} from "../../settings/sort-functions";
 
 
@@ -32,12 +32,12 @@ ChartJS.register(
 
 
 function ChartGraphs(): JSX.Element {
-    const showedPeriod = useAppSelector(getShowedPeriod);
+    const showedPeriod = useAppSelector(getShowedCardsPeriods);
     const titleName = useAppSelector(getPeriodTitleName);
     const periodNames = useAppSelector(getPeriodNames);
     const flightsToShow = useAppSelector(getFlightsToShow);
 
-    if (showedPeriod !== PeriodName.Day) {
+    if (showedPeriod !== ShowedCardsPeriods.SingleFlights) {
         periodNames.sort(sortAsc);
     }
     const data = createChartData(flightsToShow, periodNames, showedPeriod)

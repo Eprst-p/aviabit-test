@@ -1,20 +1,21 @@
 import './card.css'
 import {FlightType} from "../../types/flight-type";
-import {PeriodName} from "../../settings/period-name";
+import {ShowedCardsPeriods} from "../../settings/showed-cards-periods";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
-import {getFlightsToShow, getShowedPeriod} from "../../store/selectors";
+import {getFilteredFlights, getShowedCardsPeriods} from "../../store/selectors";
 import {getFlightsPerPeriod} from "../../settings/get-flights-per-period";
 import {
     changeChosenDay,
     changeChosenMonth,
     changeChosenYear,
-    changeShowedPeriod,
+    changeShowedCardsPeriod,
 } from "../../store/data-process/data-process";
 import {monthNames} from "../../settings/months-names";
 import {convertTime} from "../../settings/convert-time";
 import BreadCrumbs from "../bread-crumbs/bread-crumbs";
 import {PeriodData} from "../../types/period-data";
 import {getDayFromIso, getMonthFromIso, getYearFromIso} from "../../settings/getDateFromIso";
+import {PeriodName} from "../../settings/PeriodName";
 
 type CardProps = {
     name: number | string;
@@ -22,10 +23,15 @@ type CardProps = {
 
 function Card({name}: CardProps): JSX.Element {
     const dispatch = useAppDispatch();
-    let currentPeriod = PeriodName.Year
-    let cardTitleName = name;
-    const showedPeriod = useAppSelector(getShowedPeriod);
-    const flightsInAbovePeriod = useAppSelector(getFlightsToShow);
+    let cardTitleName:string | number = name;
+    const showedCardsPeriods = useAppSelector(getShowedCardsPeriods);
+    const filteredFlights = useAppSelector(getFilteredFlights);
+    let periodInCard:PeriodName = PeriodName.Year;
+    let flightsForCard: FlightType[] = getFlightsPerPeriod(filteredFlights, +name, periodInCard);
+    let flight: FlightType = filteredFlights[0];
+    let flightYear = getYearFromIso(flight.dateFlight);
+    let flightMonth = getMonthFromIso(flight.dateFlight);
+    let flightDay = getDayFromIso(flight.dateFlight);
 
     const periodDataForBreadCrumbs:PeriodData = {
         year: undefined,
@@ -33,56 +39,80 @@ function Card({name}: CardProps): JSX.Element {
         day: undefined
     }
 
-    let flight: FlightType = flightsInAbovePeriod[0];
-    const flightYear = getYearFromIso(flight.dateFlight);
-    const flightMonth = getMonthFromIso(flight.dateFlight);
-    const flightDay = getDayFromIso(flight.dateFlight);
+    // useEffect(() => {
+    //     flightsForCard = getFlightsPerPeriod(filteredFlights, +name, periodInCard);
+    //     flight = flightsForCard[0];
+    //     flightYear = getYearFromIso(flight.dateFlight);
+    //     flightMonth = getMonthFromIso(flight.dateFlight);
+    //     flightDay = getDayFromIso(flight.dateFlight);
+    // },[filteredFlights, periodInCard, showedCardsPeriods])
 
     let workTimeName:string = '';
-    if (showedPeriod === PeriodName.Day) {
-        flight = flightsInAbovePeriod.filter(flight => flight.flight === name )[0];
-        workTimeName = flight.type === 0 ? "фактическое" : "плановое";
-        periodDataForBreadCrumbs.year = flightYear;
-        periodDataForBreadCrumbs.month = flightMonth;
-        periodDataForBreadCrumbs.day = flightDay;
-    }
 
-    switch (showedPeriod) {
-        case PeriodName.Year:
-            currentPeriod = PeriodName.Month;
+    switch (showedCardsPeriods) {
+        // case PeriodName.AllYears:
+        //     periodInCard = PeriodName.Year;
+        //     cardTitleName = name;
+        //     periodDataForBreadCrumbs.year = flightYear;
+        //     break;
+        case ShowedCardsPeriods.Months:
+            periodInCard = PeriodName.Month;
             cardTitleName = monthNames[+name];
+            flightsForCard = getFlightsPerPeriod(filteredFlights, +name, periodInCard);
+            console.log('flightsForCard:', flightsForCard);
+            flight = flightsForCard[0];
+            flightYear = getYearFromIso(flight.dateFlight);
+            flightMonth = getMonthFromIso(flight.dateFlight);
+            flightDay = getDayFromIso(flight.dateFlight);
             periodDataForBreadCrumbs.year = flightYear;
             break;
-        case PeriodName.Month:
-            currentPeriod = PeriodName.Day;
+        case ShowedCardsPeriods.Days:
+            periodInCard = PeriodName.Day;
+            flightsForCard = getFlightsPerPeriod(filteredFlights, +name, periodInCard);
+            flight = flightsForCard[0];
+            flightYear = getYearFromIso(flight.dateFlight);
+            flightMonth = getMonthFromIso(flight.dateFlight);
+            flightDay = getDayFromIso(flight.dateFlight);
             periodDataForBreadCrumbs.year = flightYear;
             periodDataForBreadCrumbs.month = flightMonth;
             break;
+        case ShowedCardsPeriods.SingleFlights:
+            periodInCard = PeriodName.SingleFlight;
+            workTimeName = flight.type === 0 ? "фактическое" : "плановое";
+            flightsForCard = getFlightsPerPeriod(filteredFlights, +name, periodInCard);
+            flight = filteredFlights.filter(flight => flight.flight === name )[0];
+            flightYear = getYearFromIso(flight.dateFlight);
+            flightMonth = getMonthFromIso(flight.dateFlight);
+            flightDay = getDayFromIso(flight.dateFlight);
+            periodDataForBreadCrumbs.year = flightYear;
+            periodDataForBreadCrumbs.month = flightMonth;
+            periodDataForBreadCrumbs.day = flightDay;
+            break;
     }
 
-    const flightsPerPeriod = getFlightsPerPeriod(flightsInAbovePeriod, +name, currentPeriod);
 
-    const flightsAmount = flightsPerPeriod.length;
+    const flightsAmount = flightsForCard.length;
     let flightTime = 0;
     let workTimeFact = 0;
     let workTimePlan = 0;
-    flightsPerPeriod.forEach((flight)=>{
+    flightsForCard.forEach((flight)=>{
         flightTime += flight.timeFlight;
         flight.type === 0 ? workTimeFact += flight.timeWork : workTimePlan += flight.timeWork;
     })
 
-
     const onExpandBtnClick = () => {
-        dispatch(changeShowedPeriod(currentPeriod));
-        switch (currentPeriod) {
+        switch (periodInCard) {
             case PeriodName.Year:
                 dispatch(changeChosenYear(+name))
+                dispatch(changeShowedCardsPeriod(ShowedCardsPeriods.Months));
                 break;
             case PeriodName.Month:
-                dispatch(changeChosenMonth(+name))
+                dispatch(changeChosenMonth(+name));
+                dispatch(changeShowedCardsPeriod(ShowedCardsPeriods.Days));
                 break;
             case PeriodName.Day:
-                dispatch(changeChosenDay(+name))
+                dispatch(changeChosenDay(+name));
+                dispatch(changeShowedCardsPeriod(ShowedCardsPeriods.SingleFlights));
                 break;
         }
     }
@@ -90,11 +120,11 @@ function Card({name}: CardProps): JSX.Element {
     return (
         <div className="card">
             {
-                showedPeriod === PeriodName.Day
+                showedCardsPeriods === ShowedCardsPeriods.SingleFlights
                 ?
                     <>
                         <div className="bread-crumbs-wrapper">
-                            <BreadCrumbs perodData={periodDataForBreadCrumbs} />
+                            <BreadCrumbs periodData={periodDataForBreadCrumbs} />
                         </div>
                         <h6 className="card-title">{`рейс: ${name}`}</h6>
                         <div className="card-stats">
@@ -129,12 +159,12 @@ function Card({name}: CardProps): JSX.Element {
                 :
                     <>
                         {
-                            showedPeriod === PeriodName.AllYears
+                            showedCardsPeriods === ShowedCardsPeriods.Years
                             ?
                                 ''
                             :
                                 <div className="bread-crumbs-wrapper">
-                                    <BreadCrumbs perodData={periodDataForBreadCrumbs} />
+                                    <BreadCrumbs periodData={periodDataForBreadCrumbs} />
                                 </div>
                         }
                         <h6 className="card-title">{`${cardTitleName}`}</h6>

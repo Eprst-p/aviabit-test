@@ -1,9 +1,17 @@
-.period-switcher-fieldset {
-    margin: 5px;
-    border-radius: 10px;
-    width: 120px;
+.period-switcher-wrapper {
+    margin: 10px;
+    padding: 5px;
+    width: 180px;
     font-size: calc(8px + 1vmin);
+    background-color: #0a5050;
+    border: 1px solid #84e8d6;
+    border-radius: 10px;
+    box-shadow: 4px 4px 3px 2px #021331;
+}
 
+.period-switch-title {
+    margin: 0;
+    font-size: calc(8px + 1vmin);
 }
 
 .period-switcher-wrapper {

@@ -1,24 +1,24 @@
 import {State} from '../types/state';
 import {createSelector} from "reselect";
-import {PeriodName} from "../settings/period-name";
+import {ShowedCardsPeriods} from "../settings/showed-cards-periods";
 import {monthNames} from "../settings/months-names";
 import {getDayFromIso, getMonthFromIso, getYearFromIso} from "../settings/getDateFromIso";
 
 //data-process
 export const getAllFlights = (state:State) => state.DATA.allFlights;
 export const getFlightsToShow = (state:State) => state.DATA.flightsToShow;
-export const getShowedPeriod = (state:State) => state.DATA.showedPeriod;
+export const getShowedCardsPeriods = (state:State) => state.DATA.showedCardsPeriods;
 export const getChosenYear = (state:State) => state.DATA.chosenYear;
 export const getChosenMonth = (state:State) => state.DATA.chosenMonth;
 export const getChosenDay = (state:State) => state.DATA.chosenDay;
 
 //interface-process
 export const getSortOrder = (state:State) => state.INTERFACE.sortOrder;
-export const getPeriodTitleName = createSelector(getShowedPeriod, getChosenYear, getChosenMonth, getChosenDay, (showedPeriod, year, month, day) => {
+export const getPeriodTitleName = createSelector(getShowedCardsPeriods, getChosenYear, getChosenMonth, getChosenDay, (showedPeriod, year, month, day) => {
     const yearTitle = year ? `${year}` : '';
     const monthTitle = month ? `${monthNames[month]}` : '';
     const dayTitle = day ? `${day} число` : '';
-    return showedPeriod === PeriodName.AllYears ? 'все года' : `${yearTitle} ${monthTitle} ${dayTitle}`;
+    return showedPeriod === ShowedCardsPeriods.Years ? 'все года' : `${yearTitle} ${monthTitle} ${dayTitle}`;
 });
 export const getWorkTypeFilter = (state:State) => state.INTERFACE.workTimeTypeFilter;
 export const getPlaneTypeFilter = (state:State) => state.INTERFACE.planeTypeFilter;
@@ -29,9 +29,12 @@ export const getStartDateFilter = (state:State) => state.INTERFACE.startDateFilt
 export const getEndDateFilter = (state:State) => state.INTERFACE.endDateFilter;
 export const getSearchedFlight = (state:State) => state.INTERFACE.searchedFlight;
 
-//filter
+//alfa-filter
 export const getFilteredFlights = createSelector(
     getAllFlights,
+    getChosenYear,
+    getChosenMonth,
+    getChosenDay,
     getWorkTypeFilter,
     getPlaneTypeFilter,
     getSideNumberFilter,
@@ -41,6 +44,9 @@ export const getFilteredFlights = createSelector(
     getEndDateFilter,
     getSearchedFlight,
         (allFlights,
+         year,
+         month,
+         day,
          workType,
          planeType,
          sideNumber,
@@ -51,6 +57,9 @@ export const getFilteredFlights = createSelector(
          searchedFlight,
         ) => {
             return allFlights.filter((flight) => {
+                let yearFilter = true;
+                let monthFilter = true;
+                let dayFilter = true;
                 let workTypeFilter = true;
                 let planeTypeFilter = true;
                 let sideNumberFilter = true;
@@ -60,6 +69,18 @@ export const getFilteredFlights = createSelector(
                 let endDateFilter = true;
                 let searchedFLightFilter = true;
 
+                if (year !== undefined) {
+                    const flightDate = new Date(flight.dateFlight);
+                    yearFilter = flightDate.getFullYear() === year;
+                }
+                if (month !== undefined) {
+                    const flightDate = new Date(flight.dateFlight);
+                    monthFilter = flightDate.getMonth() === month;
+                }
+                if (day !== undefined) {
+                    const flightDate = new Date(flight.dateFlight);
+                    dayFilter = flightDate.getDate() === day;
+                }
                 if (workType !== undefined) {
                     workTypeFilter = flight.type === workType;
                 }
@@ -102,6 +123,9 @@ export const getFilteredFlights = createSelector(
                 }
 
                 return (
+                    yearFilter &&
+                    monthFilter &&
+                    dayFilter &&
                     workTypeFilter &&
                     planeTypeFilter &&
                     sideNumberFilter &&
@@ -135,8 +159,8 @@ export const getFlightsPerDay = createSelector(getFlightsPerMonth, getChosenDay,
     })
 });
 
-export const getPeriodNames = createSelector(getFlightsToShow, getShowedPeriod, (flights, showedPeriod) => {
-    if (showedPeriod === PeriodName.Day) {
+export const getPeriodNames = createSelector(getFilteredFlights, getShowedCardsPeriods, (flights, showedPeriod) => {
+    if (showedPeriod === ShowedCardsPeriods.SingleFlights) {
         return flights.map((flight) => flight.flight);
     }
     const uniqueNames = new Set<string>();
@@ -144,13 +168,13 @@ export const getPeriodNames = createSelector(getFlightsToShow, getShowedPeriod, 
         const flightDate = new Date(flight.dateFlight);
         let name:string = '';
         switch (showedPeriod) {
-            case PeriodName.AllYears:
+            case ShowedCardsPeriods.Years:
                 name = `${flightDate.getFullYear()}`;
                 break;
-            case PeriodName.Year:
+            case ShowedCardsPeriods.Months:
                 name = `${flightDate.getMonth()}`;
                 break;
-            case PeriodName.Month:
+            case ShowedCardsPeriods.Days:
                 name = `${flightDate.getDate()}`;
                 break;
         }

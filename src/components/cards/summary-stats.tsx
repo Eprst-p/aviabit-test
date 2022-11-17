@@ -2,7 +2,7 @@ import './period-switcher.css';
 import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
 import React, {useEffect} from "react";
 import {changeFlightsToShow} from "../../store/data-process/data-process";
-import {PeriodName} from "../../settings/period-name";
+import {ShowedCardsPeriods} from "../../settings/showed-cards-periods";
 import {convertTime} from "../../settings/convert-time";
 import BreadCrumbs from "../bread-crumbs/bread-crumbs";
 import {
@@ -13,57 +13,58 @@ import {
     getFlightsPerMonth,
     getFlightsPerYear,
     getPeriodTitleName,
-    getShowedPeriod
+    getShowedCardsPeriods
 } from "../../store/selectors";
 import {FlightType} from "../../types/flight-type";
 import {PeriodData} from "../../types/period-data";
 import CancelFiltersBtn from "./cancel-filters-btn";
+import PeriodSwitcher from "./period-switcher";
 
 
 function SummaryStats(): JSX.Element {
     const dispatch = useAppDispatch();
-    const allFilteredFlights = useAppSelector(getFilteredFlights);
-    const flightsPerYear = useAppSelector(getFlightsPerYear)
-    const flightsPerMonth = useAppSelector(getFlightsPerMonth)
-    const flightsPerDay = useAppSelector(getFlightsPerDay)
-    let flightsToShow:FlightType[];
+    const filteredFlights = useAppSelector(getFilteredFlights);
+    // const flightsPerYear = useAppSelector(getFlightsPerYear)
+    // const flightsPerMonth = useAppSelector(getFlightsPerMonth)
+    // const flightsPerDay = useAppSelector(getFlightsPerDay)
+    // let flightsToShow:FlightType[];
     const titleName = useAppSelector(getPeriodTitleName);
-    const showedPeriod = useAppSelector(getShowedPeriod);
+    const showedPeriod = useAppSelector(getShowedCardsPeriods);
 
-    const chosenYear = useAppSelector(getChosenYear);
-    const chosenMonth = useAppSelector(getChosenMonth);
-    const chosenDay = useAppSelector(getChosenDay);
-    const periodDataForBreadCrumbs:PeriodData = {
-        year: chosenYear,
-        month: chosenMonth,
-        day: chosenDay
-    }
+    // const chosenYear = useAppSelector(getChosenYear);
+    // const chosenMonth = useAppSelector(getChosenMonth);
+    // const chosenDay = useAppSelector(getChosenDay);
+    // const periodDataForBreadCrumbs:PeriodData = {
+    //     year: chosenYear,
+    //     month: chosenMonth,
+    //     day: chosenDay
+    // }
 
-    switch (showedPeriod) {
-        case PeriodName.AllYears:
-            flightsToShow = allFilteredFlights;
-            break;
-        case PeriodName.Year:
-            flightsToShow = flightsPerYear;
-            break;
-        case PeriodName.Month:
-            flightsToShow = flightsPerMonth;
-            break;
-        case PeriodName.Day:
-            flightsToShow = flightsPerDay;
-            break;
-    }
+    // switch (showedPeriod) {
+    //     case PeriodName.AllYears:
+    //         flightsToShow = allFilteredFlights;
+    //         break;
+    //     case PeriodName.Year:
+    //         flightsToShow = flightsPerYear;
+    //         break;
+    //     case PeriodName.Month:
+    //         flightsToShow = flightsPerMonth;
+    //         break;
+    //     case PeriodName.Day:
+    //         flightsToShow = flightsPerDay;
+    //         break;
+    // }
 
-    useEffect(() => {
-        dispatch(changeFlightsToShow(flightsToShow));
-    }, [dispatch, flightsToShow]);
+    // useEffect(() => {
+    //     dispatch(changeFlightsToShow(flightsToShow));
+    // }, [dispatch, flightsToShow]);
 
 
-    const flightsAmount = flightsToShow.length;
+    const flightsAmount = filteredFlights.length;
     let flightTime = 0;
     let workTimeFact = 0;
     let workTimePlan = 0;
-    flightsToShow.forEach((flight)=>{
+    filteredFlights.forEach((flight)=>{
         flightTime += flight.timeFlight;
         flight.type === 0 ? workTimeFact += flight.timeWork : workTimePlan += flight.timeWork;
     })
@@ -102,14 +103,17 @@ function SummaryStats(): JSX.Element {
                             ''
                     }
                 </div>
+                <PeriodSwitcher />
             </section>
-            {
-                showedPeriod === PeriodName.AllYears
-                    ?
-                    ''
-                    :
-                    <BreadCrumbs perodData={periodDataForBreadCrumbs} />
-            }
+
+
+            {/*{*/}
+            {/*    showedPeriod === PeriodName.AllYears*/}
+            {/*        ?*/}
+            {/*        ''*/}
+            {/*        :*/}
+            {/*        <BreadCrumbs perodData={periodDataForBreadCrumbs} />*/}
+            {/*}*/}
         </div>
     );
 }

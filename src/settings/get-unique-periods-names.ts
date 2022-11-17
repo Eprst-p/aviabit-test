@@ -1,22 +1,22 @@
 import {FlightType} from "../types/flight-type";
-import {PeriodName} from "./period-name";
+import {ShowedCardsPeriods} from "./showed-cards-periods";
 
-export const getUniquePeriodsNames = (flights: FlightType[], chosenPeriod: PeriodName) => {
+export const getUniquePeriodsNames = (flights: FlightType[], chosenPeriod: ShowedCardsPeriods) => {
     const uniqueNames = new Set<string>();
     flights.forEach(flight => {
         const flightDate = new Date(flight.dateFlight);
         let name:string = '';
         switch (chosenPeriod) {
-            case PeriodName.AllYears:
+            case ShowedCardsPeriods.Years:
                 name = `${flightDate.getFullYear()}`;
                 break;
-            case PeriodName.Year:
+            case ShowedCardsPeriods.Months:
                 name = `${flightDate.getMonth()}`;
                 break;
-            case PeriodName.Month:
+            case ShowedCardsPeriods.Days:
                 name = `${flightDate.getDate()}`;
                 break;
-            case PeriodName.Day:
+            case ShowedCardsPeriods.SingleFlights:
                 name = flight.flight;
                 break;
         }

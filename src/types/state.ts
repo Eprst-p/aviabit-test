@@ -1,13 +1,13 @@
 import {FlightType} from "./flight-type";
 import {SortOrder} from "../settings/sort-order";
 import {store} from "../store";
-import {PeriodName} from "../settings/period-name";
+import {ShowedCardsPeriods} from "../settings/showed-cards-periods";
 import {WorkTimeType} from "../settings/work-time-type";
 
 export type DataProcess = {
   allFlights: FlightType[];
   flightsToShow: FlightType[];
-  showedPeriod: PeriodName;
+  showedCardsPeriods: ShowedCardsPeriods;
   chosenYear: number | undefined;
   chosenMonth: number | undefined;
   chosenDay: number | undefined;

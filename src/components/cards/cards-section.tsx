@@ -2,18 +2,18 @@ import './cards-section.css';
 import {useAppSelector} from "../../hooks/redux-hooks";
 import {
      getPeriodNames,
-    getShowedPeriod
+    getShowedCardsPeriods
 } from "../../store/selectors";
-import {PeriodName} from "../../settings/period-name";
+import {ShowedCardsPeriods} from "../../settings/showed-cards-periods";
 import Card from "./card";
 import {sortAsc} from "../../settings/sort-functions";
 import SummaryStats from "./summary-stats";
 
 function CardsSection(): JSX.Element {
-    const showedPeriod = useAppSelector(getShowedPeriod);
+    const showedPeriod = useAppSelector(getShowedCardsPeriods);
     const periodNames = useAppSelector(getPeriodNames);
 
-    if (showedPeriod !== PeriodName.Day) {
+    if (showedPeriod !== ShowedCardsPeriods.SingleFlights) {
         periodNames.sort(sortAsc);
     }
 
