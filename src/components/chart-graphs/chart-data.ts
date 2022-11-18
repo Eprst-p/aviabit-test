@@ -6,7 +6,7 @@ import {WorkTimeType} from "../../settings/work-time-type";
 import {convertTime} from "../../settings/convert-time";
 import {PeriodName} from "../../settings/PeriodName";
 
-export const createChartData = (flightsToShow:FlightType[], xAxisElements: string[], showedPeriod: ShowedCardsPeriods) => {
+export const createChartData = (filteredFlights:FlightType[], xAxisElements: string[], showedPeriod: ShowedCardsPeriods) => {
     let periodPerData:PeriodName = PeriodName.Year;
     switch (showedPeriod) {
         case ShowedCardsPeriods.Months:
@@ -27,7 +27,7 @@ export const createChartData = (flightsToShow:FlightType[], xAxisElements: strin
     }
 
     const createYvalue = (workTimeType: WorkTimeType, element:string) => {
-        const flightsPerPeriod = getFlightsPerPeriod(flightsToShow, +element, periodPerData);
+        const flightsPerPeriod = getFlightsPerPeriod(filteredFlights, +element, periodPerData);
         let y: number = 0;
         flightsPerPeriod.forEach((flight) => {
             if (flight.type === workTimeType) {

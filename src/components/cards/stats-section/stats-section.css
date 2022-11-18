@@ -1,0 +1,11 @@
+.stats-section-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.stats-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+}

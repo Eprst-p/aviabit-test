@@ -31,7 +31,6 @@ function FlightsSearchForm(): JSX.Element {
 
     const handleSearchFieldOnBlur = () => {
         setTimeout(() => setSelectListStatus(false), 150);
-
     }
 
     const handleOnSelectItemClick = (evt: React.MouseEvent<HTMLLIElement>) => {

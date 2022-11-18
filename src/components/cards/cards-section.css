@@ -7,49 +7,6 @@
     box-shadow: 3px 3px 2px 1px #021331;
 }
 
-.summary-stats-wrapper {
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-}
-
-.stats-section {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.summary-stats-title {
-    margin: 10px;
-}
-
-.summary-stats-card {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 5px;
-    font-size: calc(8px + 1vmin);
-    width: 450px;
-    align-self: center;
-    background-color: #0a5050;
-    border: 1px solid #84e8d6;
-    border-radius: 10px;
-    box-shadow: 3px 3px 2px 1px #021331;
-}
-
-.stat-name {
-    margin: 5px;
-    text-align: left;
-}
-
-.stat-value {
-    margin: 5px;
-    text-align: right;
-}
-
 .cards-wrapper {
     margin: 10px;
     display: flex;

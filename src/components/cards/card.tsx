@@ -13,9 +13,8 @@ import {
 import {monthNames} from "../../settings/months-names";
 import {convertTime} from "../../settings/convert-time";
 import BreadCrumbs from "../bread-crumbs/bread-crumbs";
-import {PeriodData} from "../../types/period-data";
-import {getDayFromIso, getMonthFromIso, getYearFromIso} from "../../settings/getDateFromIso";
 import {PeriodName} from "../../settings/PeriodName";
+import {setPeriodDataForBreadCrumbs} from "../../settings/set-period-data-for-bread-crumbs";
 
 type CardProps = {
     name: number | string;
@@ -29,67 +28,27 @@ function Card({name}: CardProps): JSX.Element {
     let periodInCard:PeriodName = PeriodName.Year;
     let flightsForCard: FlightType[] = getFlightsPerPeriod(filteredFlights, +name, periodInCard);
     let flight: FlightType = filteredFlights[0];
-    let flightYear = getYearFromIso(flight.dateFlight);
-    let flightMonth = getMonthFromIso(flight.dateFlight);
-    let flightDay = getDayFromIso(flight.dateFlight);
-
-    const periodDataForBreadCrumbs:PeriodData = {
-        year: undefined,
-        month: undefined,
-        day: undefined
-    }
-
-    // useEffect(() => {
-    //     flightsForCard = getFlightsPerPeriod(filteredFlights, +name, periodInCard);
-    //     flight = flightsForCard[0];
-    //     flightYear = getYearFromIso(flight.dateFlight);
-    //     flightMonth = getMonthFromIso(flight.dateFlight);
-    //     flightDay = getDayFromIso(flight.dateFlight);
-    // },[filteredFlights, periodInCard, showedCardsPeriods])
-
     let workTimeName:string = '';
 
     switch (showedCardsPeriods) {
-        // case PeriodName.AllYears:
-        //     periodInCard = PeriodName.Year;
-        //     cardTitleName = name;
-        //     periodDataForBreadCrumbs.year = flightYear;
-        //     break;
         case ShowedCardsPeriods.Months:
             periodInCard = PeriodName.Month;
             cardTitleName = monthNames[+name];
             flightsForCard = getFlightsPerPeriod(filteredFlights, +name, periodInCard);
-            console.log('flightsForCard:', flightsForCard);
             flight = flightsForCard[0];
-            flightYear = getYearFromIso(flight.dateFlight);
-            flightMonth = getMonthFromIso(flight.dateFlight);
-            flightDay = getDayFromIso(flight.dateFlight);
-            periodDataForBreadCrumbs.year = flightYear;
             break;
         case ShowedCardsPeriods.Days:
             periodInCard = PeriodName.Day;
             flightsForCard = getFlightsPerPeriod(filteredFlights, +name, periodInCard);
             flight = flightsForCard[0];
-            flightYear = getYearFromIso(flight.dateFlight);
-            flightMonth = getMonthFromIso(flight.dateFlight);
-            flightDay = getDayFromIso(flight.dateFlight);
-            periodDataForBreadCrumbs.year = flightYear;
-            periodDataForBreadCrumbs.month = flightMonth;
             break;
         case ShowedCardsPeriods.SingleFlights:
             periodInCard = PeriodName.SingleFlight;
             workTimeName = flight.type === 0 ? "фактическое" : "плановое";
-            flightsForCard = getFlightsPerPeriod(filteredFlights, +name, periodInCard);
-            flight = filteredFlights.filter(flight => flight.flight === name )[0];
-            flightYear = getYearFromIso(flight.dateFlight);
-            flightMonth = getMonthFromIso(flight.dateFlight);
-            flightDay = getDayFromIso(flight.dateFlight);
-            periodDataForBreadCrumbs.year = flightYear;
-            periodDataForBreadCrumbs.month = flightMonth;
-            periodDataForBreadCrumbs.day = flightDay;
+            flightsForCard = getFlightsPerPeriod(filteredFlights, name, periodInCard);
+            flight = flightsForCard[0];
             break;
     }
-
 
     const flightsAmount = flightsForCard.length;
     let flightTime = 0;
@@ -124,7 +83,7 @@ function Card({name}: CardProps): JSX.Element {
                 ?
                     <>
                         <div className="bread-crumbs-wrapper">
-                            <BreadCrumbs periodData={periodDataForBreadCrumbs} />
+                            <BreadCrumbs periodData={setPeriodDataForBreadCrumbs(flight, periodInCard)} />
                         </div>
                         <h6 className="card-title">{`рейс: ${name}`}</h6>
                         <div className="card-stats">
@@ -164,7 +123,7 @@ function Card({name}: CardProps): JSX.Element {
                                 ''
                             :
                                 <div className="bread-crumbs-wrapper">
-                                    <BreadCrumbs periodData={periodDataForBreadCrumbs} />
+                                    <BreadCrumbs periodData={setPeriodDataForBreadCrumbs(flight, periodInCard)} />
                                 </div>
                         }
                         <h6 className="card-title">{`${cardTitleName}`}</h6>

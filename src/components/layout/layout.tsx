@@ -1,7 +1,6 @@
 import './layout.css';
 import {Outlet} from 'react-router-dom';
 import Header from "../header/header";
-import Footer from "../footer/footer";
 
 
 function Layout(): JSX.Element {
@@ -10,7 +9,6 @@ function Layout(): JSX.Element {
         <div className="layout-wrapper">
                 <Header />
                 <Outlet />
-                <Footer />
         </div>
     );
 }

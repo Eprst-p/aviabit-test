@@ -7,7 +7,7 @@ import {
 import {ShowedCardsPeriods} from "../../settings/showed-cards-periods";
 import Card from "./card";
 import {sortAsc} from "../../settings/sort-functions";
-import SummaryStats from "./summary-stats";
+import StatsSection from "./stats-section/stats-section";
 
 function CardsSection(): JSX.Element {
     const showedPeriod = useAppSelector(getShowedCardsPeriods);
@@ -19,7 +19,7 @@ function CardsSection(): JSX.Element {
 
     return (
         <section className="cards-section" >
-            <SummaryStats />
+            <StatsSection />
             <div className="cards-wrapper">
                 {
                     periodNames.map((name, index) =>

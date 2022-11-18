@@ -15,7 +15,6 @@ function Filter(): JSX.Element {
             <SideNumberSelector />
             <TakeOffAirportSelector />
             <LandingAirportSelector />
-
         </section>
     );
 }

@@ -14,7 +14,8 @@ import {createChartOptions} from "./chart-options";
 import {createChartData} from "./chart-data";
 import {useAppSelector} from "../../hooks/redux-hooks";
 import {
-    getFlightsToShow, getPeriodNames, getPeriodTitleName,
+    getFilteredFlights,
+    getPeriodNames, getPeriodTitleName,
     getShowedCardsPeriods,
 } from "../../store/selectors";
 import {ShowedCardsPeriods} from "../../settings/showed-cards-periods";
@@ -35,12 +36,12 @@ function ChartGraphs(): JSX.Element {
     const showedPeriod = useAppSelector(getShowedCardsPeriods);
     const titleName = useAppSelector(getPeriodTitleName);
     const periodNames = useAppSelector(getPeriodNames);
-    const flightsToShow = useAppSelector(getFlightsToShow);
+    const filteredFlights = useAppSelector(getFilteredFlights);
 
     if (showedPeriod !== ShowedCardsPeriods.SingleFlights) {
         periodNames.sort(sortAsc);
     }
-    const data = createChartData(flightsToShow, periodNames, showedPeriod)
+    const data = createChartData(filteredFlights, periodNames, showedPeriod)
     const options = createChartOptions(titleName);
 
     return (

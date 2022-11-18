@@ -1,12 +1,12 @@
 import './cancel-filters-btn.css';
-import {useAppDispatch} from "../../hooks/redux-hooks";
+import {useAppDispatch} from "../../../hooks/redux-hooks";
 import {
     changeEndDateFilter,
     changeLandingAirportFilter,
     changePlaneTypeFilter, changeSearchedFlight,
     changeSideNumberFilter, changeStartDateFilter, changeTakeOffAirportFilter,
     changeWorkTimeFilter
-} from "../../store/interface-process/interface-process";
+} from "../../../store/interface-process/interface-process";
 
 
 function CancelFiltersBtn(): JSX.Element {

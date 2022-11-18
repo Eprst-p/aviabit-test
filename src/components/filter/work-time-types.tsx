@@ -1,8 +1,8 @@
 import './work-time-types.css';
 import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
-import {getFilteredFlights, getPlaneTypeFilter, getWorkTypeFilter} from "../../store/selectors";
+import {getWorkTypeFilter} from "../../store/selectors";
 import React, {useEffect, useRef} from "react";
-import {changePlaneTypeFilter, changeWorkTimeFilter} from "../../store/interface-process/interface-process";
+import {changeWorkTimeFilter} from "../../store/interface-process/interface-process";
 import {WorkTimeType} from "../../settings/work-time-type";
 
 
@@ -10,7 +10,6 @@ function WorkTimeTypes(): JSX.Element {
     const dispatch = useAppDispatch();
     const radioBtnAllWorkTime = useRef<HTMLInputElement>(null);
     const workTimeFilter = useAppSelector(getWorkTypeFilter);
-
 
     const onRadioChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const chosenRadio = evt.target.value;
