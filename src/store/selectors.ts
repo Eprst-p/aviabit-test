@@ -139,26 +139,6 @@ export const getFilteredFlights = createSelector(
 });
 
 
-//reselectors
-export const getFlightsPerYear = createSelector(getFilteredFlights, getChosenYear, (flights, year) => {
-    return flights.filter((flight)=> {
-        const flightDate = new Date(flight.dateFlight);
-        return  flightDate.getFullYear() === year;
-    })
-});
-export const getFlightsPerMonth = createSelector(getFlightsPerYear, getChosenMonth, (flights, month) => {
-    return flights.filter((flight)=> {
-        const flightDate = new Date(flight.dateFlight);
-        return  flightDate.getMonth() === month;
-    })
-});
-export const getFlightsPerDay = createSelector(getFlightsPerMonth, getChosenDay, (flights, day) => {
-    return flights.filter((flight)=> {
-        const flightDate = new Date(flight.dateFlight);
-        return  flightDate.getDate() === day;
-    })
-});
-
 export const getPeriodNames = createSelector(getFilteredFlights, getShowedCardsPeriods, (flights, showedPeriod) => {
     if (showedPeriod === ShowedCardsPeriods.SingleFlights) {
         return flights.map((flight) => flight.flight);

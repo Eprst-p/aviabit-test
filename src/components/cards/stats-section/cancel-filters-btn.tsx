@@ -7,6 +7,13 @@ import {
     changeSideNumberFilter, changeStartDateFilter, changeTakeOffAirportFilter,
     changeWorkTimeFilter
 } from "../../../store/interface-process/interface-process";
+import {
+    changeChosenDay,
+    changeChosenMonth,
+    changeChosenYear,
+    changeShowedCardsPeriod
+} from "../../../store/data-process/data-process";
+import {ShowedCardsPeriods} from "../../../settings/showed-cards-periods";
 
 
 function CancelFiltersBtn(): JSX.Element {
@@ -21,6 +28,10 @@ function CancelFiltersBtn(): JSX.Element {
         dispatch(changeStartDateFilter(undefined));
         dispatch(changeEndDateFilter(undefined));
         dispatch(changeSearchedFlight(undefined));
+        dispatch(changeChosenYear(undefined));
+        dispatch(changeChosenMonth(undefined));
+        dispatch(changeChosenDay(undefined));
+        dispatch(changeShowedCardsPeriod(ShowedCardsPeriods.Years));
     }
 
         return (
