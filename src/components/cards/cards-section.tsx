@@ -1,4 +1,4 @@
-import './cards-section.css';
+import './cards-section.scss';
 import {useAppSelector} from "../../hooks/redux-hooks";
 import {
      getPeriodNames,

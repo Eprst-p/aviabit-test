@@ -7,6 +7,7 @@ import {AppRoute} from "../../settings/app-route";
 import {Route, Routes} from "react-router-dom";
 import Layout from "../layout/layout";
 import NotFound from "../not-found/not-found";
+import './App.scss';
 
 function App() {
     const dispatch = useAppDispatch();

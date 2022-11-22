@@ -1,10 +1,11 @@
+@import "../../styles/style-constants";
+
 .search-section {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     margin: 5px;
     padding: 5px;
-    font-size: calc(8px + 1vmin);
 }
 
 .search-section fieldset {
@@ -13,11 +14,11 @@
     justify-content: space-around;
     align-items: center;
     margin: 5px;
-    border-radius: 10px;
+    border-radius: $primary-border-radius;
     width: 300px;
 }
 
 .search-section legend {
-    font-size: calc(8px + 1vmin);
+    font-size: $primary-font-size;
 }
 

@@ -1,4 +1,4 @@
-import './chart-graphs.css';
+import './chart-graphs.scss';
 import {
     CategoryScale,
     Chart as ChartJS,

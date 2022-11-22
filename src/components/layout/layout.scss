@@ -1,11 +1,12 @@
+@import "../../styles/style-constants";
+
 .layout-wrapper {
-    background-color: #0e8c8c;
+    background-color: $light-theme-color;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+    color: $text-color;
     text-align: center;
 }

@@ -1,3 +1,6 @@
+@import "../../styles/style-constants";
+
+
 #flights-search-fieldset {
     display: flex;
     flex-direction: column;
@@ -13,14 +16,10 @@
 .form-search-input {
     width: 180px;
     height: 30px;
-    background: #0e8c8c;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-    font-size: calc(8px + 1vmin);
-    color: white;
-    border: 1px solid #021331;
-    border-radius: 10px;
+    background: $light-theme-color;
+    color: $text-color;
+    border: $selector-border;
+    border-radius: $primary-border-radius;
     padding-left: 5px;
 }
 
@@ -33,9 +32,9 @@
     position: absolute;
     width: 180px;
     margin-top: 45px;
-    background: #0e8c8c;
-    border: 1px solid #021331;
-    border-radius: 5px;
+    background: $light-theme-color;
+    border: $selector-border;
+    border-radius: $primary-border-radius*0.5;
     padding: 5px;
 }
 
@@ -46,8 +45,8 @@
 }
 
 .form-search__select-item:hover {
-    color: #031c48;
-    cursor: pointer;
+    color: $text-color-on-hover;
+    cursor: $cursor-on-hover;
 }
 
 .list-opened {

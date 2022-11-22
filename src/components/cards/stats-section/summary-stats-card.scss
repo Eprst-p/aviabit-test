@@ -1,3 +1,6 @@
+@import "../../../styles/style-constants";
+
+
 .summary-stats-card-wrapper {
     display: flex;
     flex-direction: column;
@@ -15,13 +18,12 @@
     margin-left: auto;
     margin-right: auto;
     padding: 5px;
-    font-size: calc(8px + 1vmin);
     width: 450px;
     align-self: center;
-    background-color: #0a5050;
-    border: 1px solid #84e8d6;
-    border-radius: 10px;
-    box-shadow: 3px 3px 2px 1px #021331;
+    background-color: $dark-theme-color;
+    border: $light-border;
+    border-radius: $primary-border-radius;
+    box-shadow: $shadow;
 }
 
 .stat-name {

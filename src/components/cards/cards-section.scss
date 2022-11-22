@@ -1,10 +1,13 @@
+@import "../../styles/style-constants";
+
+
 .cards-section {
     display: flex;
     flex-direction: column;
-    border: 3px solid #021331;
-    border-radius: 20px;
+    border: $dark-border;
+    border-radius: $primary-border-radius*2;
     margin: 20px;
-    box-shadow: 3px 3px 2px 1px #021331;
+    box-shadow: $shadow;
 }
 
 .cards-wrapper {

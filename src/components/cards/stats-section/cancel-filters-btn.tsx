@@ -1,4 +1,4 @@
-import './cancel-filters-btn.css';
+import './cancel-filters-btn.scss';
 import {useAppDispatch} from "../../../hooks/redux-hooks";
 import {
     changeEndDateFilter,

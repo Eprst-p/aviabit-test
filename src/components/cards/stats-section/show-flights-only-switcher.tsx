@@ -1,4 +1,4 @@
-import './show-flights-only-switcher.css';
+import './show-flights-only-switcher.scss';
 import {useAppDispatch} from "../../../hooks/redux-hooks";
 import React, {useRef} from "react";
 import {

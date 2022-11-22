@@ -1,4 +1,4 @@
-import './summary-stats-card.css';
+import './summary-stats-card.scss';
 import { useAppSelector} from "../../../hooks/redux-hooks";
 import {convertTime} from "../../../settings/convert-time";
 import {
@@ -22,7 +22,7 @@ function SummaryStatsCard(): JSX.Element {
 
     return (
         <div className="summary-stats-card-wrapper">
-            <h4 className="summary-stats-title">{`Сводная статистика за период: ${titleName}`}</h4>
+            <h3 className="summary-stats-title">{`Сводная статистика за период: ${titleName}`}</h3>
             <section className="stats-card-section">
                 <div className="summary-stats-card">
                     <div className="stat-name">{`Количество рейсов: `}</div>

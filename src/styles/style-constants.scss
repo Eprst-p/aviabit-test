@@ -1,0 +1,25 @@
+//общее
+$light-theme-color: #0e8c8c;
+$dark-theme-color: #0a5050;
+$dark-color: #021331;
+$light-color: #84e8d6;
+$text-color: white;
+$primary-border-radius: 10px;
+$primary-font-size: calc(6px + 1vmin);
+$light-border: 2px solid $light-color;
+$dark-border: 2px solid $dark-color;
+$selector-border: 1px solid $dark-color;
+$shadow: 4px 3px 3px 2px $dark-color;
+
+//кнопка на карточке
+$expand-btn-color: darkgreen;
+
+//ховер
+$btn-color-on-hover: gold;
+$text-color-on-hover: #031c48;
+$font-size-on-hover: bold;
+$cursor-on-hover: pointer;
+
+//хлебные крошки
+$breadcrumbs-fonts-size: calc(4px + 1vmin);
+

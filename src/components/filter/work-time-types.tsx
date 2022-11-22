@@ -1,4 +1,4 @@
-import './work-time-types.css';
+import './work-time-types.scss';
 import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
 import {getWorkTypeFilter} from "../../store/selectors";
 import React, {useEffect, useRef} from "react";

@@ -1,4 +1,4 @@
-import './search.css';
+import './search.scss';
 import DateSelection from "./date-selection";
 import FlightsSearchForm from "./flights-search-form";
 

@@ -1,14 +1,17 @@
+@import "../../styles/style-constants";
+
+
 .card {
     display:flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #0a5050;
-    border: 1px solid #84e8d6;
-    border-radius: 10px;
+    background-color: $dark-theme-color;
+    border: $light-border;
+    border-radius: $primary-border-radius;
     margin: 5px;
     width: 300px;
     min-height: 270px;
-    box-shadow: 4px 4px 3px 2px #021331;
+    box-shadow: $shadow;
 }
 
 .card-title {
@@ -19,7 +22,6 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     margin-top: 30px;
-    font-size: calc(8px + 1vmin);
 }
 
 .stat-name {
@@ -33,23 +35,24 @@
 }
 
 .expand-btn {
-    background-color: darkgreen;
-    border: 2px solid #021331;
-    border-radius: 10px;
+    background-color: $expand-btn-color;
+    border: $dark-border;
+    border-radius: $primary-border-radius;
     width: 140px;
     height: 40px;
-    color: white;
+    color: $text-color;
     margin: 10px;
     align-self: self-end;
 }
 
 .expand-btn:hover {
-    background-color: gold;
-    color: #031c48;
-    font-weight: bold;
+    background-color: $btn-color-on-hover;
+    color: $text-color-on-hover;
+    font-weight: $font-size-on-hover;
+    cursor: $cursor-on-hover;
 }
 
 .bread-crumbs-wrapper {
-    font-size: calc(4px + 1vmin);
+    font-size: $breadcrumbs-fonts-size;
     align-self: start;
 }

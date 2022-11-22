@@ -1,0 +1,11 @@
+@import "../../styles/style-constants";
+
+.flatpickr-input {
+    width: 100px;
+    height: 30px;
+    border-radius: $primary-border-radius;
+    background: $light-theme-color;
+    color: $text-color;
+    border: $selector-border;
+    text-align: center;
+}

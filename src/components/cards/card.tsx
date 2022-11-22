@@ -1,4 +1,4 @@
-import './card.css'
+import './card.scss'
 import {FlightType} from "../../types/flight-type";
 import {ShowedCardsPeriods} from "../../settings/showed-cards-periods";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";

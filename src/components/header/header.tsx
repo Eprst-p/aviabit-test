@@ -1,4 +1,4 @@
-import './header.css';
+import './header.scss';
 import {commanderName} from "../../settings/consts";
 import Filter from "../filter/filter";
 import Search from "../search/search";

@@ -1,5 +1,5 @@
 import "flatpickr/dist/themes/material_green.css";
-import './date-selection.css';
+import './date-selection.scss';
 import Flatpickr from "react-flatpickr";
 import {useEffect, useState} from "react";
 import flatpickr from "flatpickr";

@@ -1,0 +1,18 @@
+@import "../../../styles/style-constants";
+
+.cancel-filters-btn {
+  background-color: $dark-theme-color;
+  border: $dark-border;
+  border-radius: $primary-border-radius;
+  width: 140px;
+  color: $text-color;
+  margin: 10px;
+  align-self: self-end;
+}
+
+.cancel-filters-btn:hover {
+  background-color: $btn-color-on-hover;
+  color: $text-color-on-hover;
+  font-weight: $font-size-on-hover;
+  cursor: $cursor-on-hover;
+}

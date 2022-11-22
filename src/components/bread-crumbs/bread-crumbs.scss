@@ -1,3 +1,5 @@
+@import "../../styles/style-constants";
+
 .bread-crumbs {
     list-style-type: none;
     text-align: left;
@@ -6,14 +8,14 @@
 
 .crumb-element {
     display: inline;
-    cursor: pointer;
+    cursor: $cursor-on-hover;
 }
 
 .crumb-element:hover {
-    color: #031c48;
+    color: $text-color-on-hover;
 }
 
 .crumb-element:last-child:hover {
-    color: white;
+    color: $text-color;
     cursor: default;
 }

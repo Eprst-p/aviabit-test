@@ -1,4 +1,4 @@
-import './filter.css';
+import './filter.scss';
 import PlaneTypeSelector from "./plane-type-selector";
 import WorkTimeTypes from "./work-time-types";
 import SideNumberSelector from "./side-number-selector";

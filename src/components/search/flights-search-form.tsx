@@ -1,4 +1,4 @@
-import './flights-search-form.css';
+import './flights-search-form.scss';
 import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
 import React, {useEffect, useRef, useState} from "react";
 import {getFlightNames, getSearchedFlight} from "../../store/selectors";
