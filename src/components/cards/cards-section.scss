@@ -8,11 +8,14 @@
     border-radius: $primary-border-radius*2;
     margin: 20px;
     box-shadow: $shadow;
+    padding: 5px;
+    width: 95vw;
 }
 
 .cards-wrapper {
     margin: 10px;
     display: flex;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     overflow-y: auto;
     scroll-snap-type: y mandatory;
