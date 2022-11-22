@@ -1,9 +1,11 @@
 @import "../../styles/style-constants";
 
 .bread-crumbs {
+    display: inline-block;
     list-style-type: none;
     text-align: left;
     padding: 5px;
+    margin: 5px;
 }
 
 .crumb-element {

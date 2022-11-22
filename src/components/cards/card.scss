@@ -10,8 +10,9 @@
     border-radius: $primary-border-radius;
     margin: 5px;
     width: 300px;
-    min-height: 270px;
+    min-height: 250px;
     box-shadow: $shadow;
+    scroll-snap-align: start;
 }
 
 .card-title {
@@ -21,7 +22,7 @@
 .card-stats {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .stat-name {

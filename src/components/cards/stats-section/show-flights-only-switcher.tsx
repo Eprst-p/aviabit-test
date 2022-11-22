@@ -29,7 +29,7 @@ function ShowFlightsOnlySwitcher(): JSX.Element {
 
     return (
         <div className="show-flights-only-switcher-wrapper">
-            <p className="show-flights-only-title">Показывать только рейсы</p>
+            <p className="show-flights-only-title">только рейсы</p>
             <label className="switcher">
                 <input type="checkbox" ref={switcherCheckboxField} onChange={handlerCheckboxChange}/>
                     <span className="slider round"></span>

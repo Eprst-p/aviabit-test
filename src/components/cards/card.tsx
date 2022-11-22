@@ -85,7 +85,7 @@ function Card({name}: CardProps): JSX.Element {
                         <div className="bread-crumbs-wrapper">
                             <BreadCrumbs periodData={setPeriodDataForBreadCrumbs(flight, periodInCard)} />
                         </div>
-                        <h6 className="card-title">{`рейс: ${name}`}</h6>
+                        <h4 className="card-title">{`рейс: ${name}`}</h4>
                         <div className="card-stats">
                             <div className="stat-name">{`Налет: `}</div>
                             <div className="stat-value">{`${flight.timeFlight}`}</div>
@@ -126,7 +126,7 @@ function Card({name}: CardProps): JSX.Element {
                                     <BreadCrumbs periodData={setPeriodDataForBreadCrumbs(flight, periodInCard)} />
                                 </div>
                         }
-                        <h6 className="card-title">{`${cardTitleName}`}</h6>
+                        <h4 className="card-title">{`${cardTitleName}`}</h4>
                         <div className="card-stats">
                             <div className="stat-name">{`Количество рейсов: `}</div>
                             <div className="stat-value">{`${flightsAmount}`}</div>

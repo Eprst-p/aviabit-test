@@ -14,14 +14,10 @@
     margin: 10px;
 }
 
-.search-form {
-    margin: 10px;
+.filter-btns-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    align-self: end;
 }
 
-.filter-form {
-    margin: 10px;
-}
-
-.bread-crumbs {
-    margin: 10px;
-}

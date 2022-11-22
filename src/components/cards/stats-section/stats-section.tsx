@@ -7,10 +7,6 @@ function StatsSection(): JSX.Element {
 
     return (
         <div className="stats-section-wrapper">
-            <div className="stats-btns-wrapper">
-                <CancelFiltersBtn />
-                <ShowFlightsOnlySwitcher />
-            </div>
             <SummaryStatsCard />
         </div>
     );
