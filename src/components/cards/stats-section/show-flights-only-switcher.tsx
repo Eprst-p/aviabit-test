@@ -1,6 +1,5 @@
 import './show-flights-only-switcher.scss';
-import {useAppDispatch} from "../../../hooks/redux-hooks";
-import React, {useEffect, useState} from "react";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux-hooks";
 import {
     changeChosenDay,
     changeChosenMonth,
@@ -8,14 +7,16 @@ import {
     changeShowedCardsPeriod
 } from "../../../store/data-process/data-process";
 import {ShowedCardsPeriods} from "../../../settings/showed-cards-periods";
+import {getShowedCardsPeriods} from "../../../store/selectors";
 
 
 function ShowFlightsOnlySwitcher(): JSX.Element {
     const dispatch = useAppDispatch();
-    const [isShowingFlightsOnly, setShowingFlightsOnly] = useState(false);
+    const showedCardsPeriods = useAppSelector(getShowedCardsPeriods);
 
-    useEffect(() => {
-        if (isShowingFlightsOnly) {
+
+    const handleShowFlightsOnlyBtnClick = () => {
+        if (showedCardsPeriods !== ShowedCardsPeriods.SingleFlights) {
             dispatch(changeShowedCardsPeriod(ShowedCardsPeriods.SingleFlights));
         } else {
             dispatch(changeShowedCardsPeriod(ShowedCardsPeriods.Years));
@@ -23,16 +24,11 @@ function ShowFlightsOnlySwitcher(): JSX.Element {
             dispatch(changeChosenMonth(undefined));
             dispatch(changeChosenDay(undefined));
         }
-    }, [dispatch, isShowingFlightsOnly])
-
-
-    const handleShowFlightsOnlyBtnClick = () => {
-        setShowingFlightsOnly(!isShowingFlightsOnly);
     }
 
     return (
         <div className="show-flights-only-switcher-wrapper">
-            <button className={`show-flights-only-btn ${isShowingFlightsOnly ? 'active': ''}`} onClick={handleShowFlightsOnlyBtnClick}>Показывать только рейсы</button>
+            <button className={`show-flights-only-btn ${showedCardsPeriods === ShowedCardsPeriods.SingleFlights ? 'active': ''}`} onClick={handleShowFlightsOnlyBtnClick}>Показывать только рейсы</button>
         </div>
     );
 }

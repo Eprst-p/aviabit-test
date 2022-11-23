@@ -15,7 +15,7 @@ function FlightsSearchForm(): JSX.Element {
     const handleSearchFieldOnInput = () => {
         if (searchField.current?.value !== '') {
             const flightTyped = searchField.current?.value.toUpperCase();
-            if (flightTyped && flightTyped.length === 2) {
+            if (flightTyped && flightTyped.length >= 1) {
                 setSelectListStatus(true);
                 setFlightsLikeTyped(flightsNames.filter(flightName => flightName.includes(flightTyped)));
             }

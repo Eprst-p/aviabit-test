@@ -6,7 +6,6 @@ import {WorkTimeType} from "../settings/work-time-type";
 
 export type DataProcess = {
   allFlights: FlightType[];
-  flightsToShow: FlightType[];
   showedCardsPeriods: ShowedCardsPeriods;
   chosenYear: number | undefined;
   chosenMonth: number | undefined;

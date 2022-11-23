@@ -4,23 +4,26 @@
   justify-content: space-around;
   align-items: center;
   background-color: #f5f5f5;
+  width: 80vm;
+  font-size: calc(8px + 2vmin);
 }
 
 .page404_img {
-  width: 1100px;
-  height: 400px;
+  width: 60vm;
+  height: 20vm;
 }
 
 .page404_title {
-  font-size: 200%;
-}
-
-.page404_reasons {
   font-size: 150%;
 }
 
+.page404_reasons {
+  font-size: 100%;
+}
+
 .page404_back_link {
-  font-size: 180%;
+  font-size: 120%;
   color: rgb(8, 8, 155);
-  margin-left: 400px;
+  align-self: flex-end;
+  margin-right: 40px;
 }

@@ -6,7 +6,6 @@ import {getDayFromIso, getMonthFromIso, getYearFromIso} from "../settings/getDat
 
 //data-process
 export const getAllFlights = (state:State) => state.DATA.allFlights;
-export const getFlightsToShow = (state:State) => state.DATA.flightsToShow;
 export const getShowedCardsPeriods = (state:State) => state.DATA.showedCardsPeriods;
 export const getChosenYear = (state:State) => state.DATA.chosenYear;
 export const getChosenMonth = (state:State) => state.DATA.chosenMonth;

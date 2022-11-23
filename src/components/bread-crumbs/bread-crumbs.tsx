@@ -1,6 +1,5 @@
 import './bread-crumbs.scss';
-import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
-import {getChosenDay, getChosenMonth, getChosenYear} from "../../store/selectors";
+import {useAppDispatch} from "../../hooks/redux-hooks";
 import {monthNames} from "../../settings/months-names";
 import {
     changeChosenDay,
