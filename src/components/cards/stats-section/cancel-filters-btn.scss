@@ -1,11 +1,13 @@
 @import "../../../styles/style-constants";
 
 .cancel-filters-btn {
-  background-color: $dark-theme-color;
+  background-color: $light-theme-color;
+  opacity: 0.9;
   border: $dark-border;
   border-radius: $primary-border-radius;
-  width: 120px;
-  color: $text-color;
+  width: 60px;
+  height: 30px;
+  color: $dark-color;
   margin: 10px;
   align-self: self-end;
 }

@@ -46,7 +46,7 @@ function ChartGraphs(): JSX.Element {
 
     return (
        <section className="graph-section">
-           <Line id="graph-canvas" options={options} data={data} />
+           <Line id="graph-canvas" options={options} data={data} width={0.5} height={0.5} />
        </section>
     );
 }

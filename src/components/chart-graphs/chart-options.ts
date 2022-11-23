@@ -6,7 +6,7 @@ export const createChartOptions = (titleName: string) => ({
              labels: {
                  color: "white",
                  font: {
-                     size: 20,
+                     size: 18,
                  }
              },
          },
@@ -15,7 +15,7 @@ export const createChartOptions = (titleName: string) => ({
              text: `График фактического и планового налета за ${titleName}`,
              color: "white",
              font: {
-                 size: 20,
+                 size: 18,
              }
          },
      },
@@ -25,7 +25,7 @@ export const createChartOptions = (titleName: string) => ({
              ticks: {
                  color: "white",
                  font: {
-                     size: 15,
+                     size: 13,
                  }
              },
          },
@@ -36,20 +36,18 @@ export const createChartOptions = (titleName: string) => ({
                  color: "white",
                  padding: 1,
                  font: {
-                     size: 17,
+                     size: 15,
                  }
              },
 
              ticks: {
                  color: "white",
                  font: {
-                     size: 15,
+                     size: 13,
                  }
              },
          },
      },
-    options: {
-         responsive: true,
-        maintainAspectRatio: false,
-    }
+    responsive: true,
+    maintainAspectRatio: false,
 });

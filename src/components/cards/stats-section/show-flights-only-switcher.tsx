@@ -28,7 +28,7 @@ function ShowFlightsOnlySwitcher(): JSX.Element {
 
     return (
         <div className="show-flights-only-switcher-wrapper">
-            <button className={`show-flights-only-btn ${showedCardsPeriods === ShowedCardsPeriods.SingleFlights ? 'active': ''}`} onClick={handleShowFlightsOnlyBtnClick}>Показывать только рейсы</button>
+            <button className={`show-flights-only-btn ${showedCardsPeriods === ShowedCardsPeriods.SingleFlights ? 'active': ''}`} onClick={handleShowFlightsOnlyBtnClick}>Рейсы</button>
         </div>
     );
 }
