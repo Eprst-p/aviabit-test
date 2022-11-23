@@ -48,4 +48,8 @@ export const createChartOptions = (titleName: string) => ({
              },
          },
      },
+    options: {
+         responsive: true,
+        maintainAspectRatio: false,
+    }
 });
