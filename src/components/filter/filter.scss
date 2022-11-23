@@ -35,6 +35,10 @@
     border: $selector-border
 }
 
+.filter-selector:hover {
+    cursor: $cursor-on-hover;
+}
+
 #airport-selector {
     width: 180px;
 }
