@@ -31,7 +31,6 @@ function DateSelection(): JSX.Element {
         maxDate: maxDate,
     }
 
-    //нужна кнопка сброса фильтров
     return (
         <fieldset className="date-selection-fieldset">
             <legend className="date-selection-fieldset-legend">Рейсы за период</legend>

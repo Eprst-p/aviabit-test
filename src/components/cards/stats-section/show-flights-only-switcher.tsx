@@ -1,6 +1,5 @@
 import './show-flights-only-switcher.scss';
-import {useAppDispatch} from "../../../hooks/redux-hooks";
-import React, {useRef} from "react";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux-hooks";
 import {
     changeChosenDay,
     changeChosenMonth,
@@ -8,15 +7,16 @@ import {
     changeShowedCardsPeriod
 } from "../../../store/data-process/data-process";
 import {ShowedCardsPeriods} from "../../../settings/showed-cards-periods";
+import {getShowedCardsPeriods} from "../../../store/selectors";
 
 
 function ShowFlightsOnlySwitcher(): JSX.Element {
     const dispatch = useAppDispatch();
-    const switcherCheckboxField = useRef<HTMLInputElement>(null);
+    const showedCardsPeriods = useAppSelector(getShowedCardsPeriods);
 
-    const handlerCheckboxChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        const checked = evt.target.checked;
-        if (checked) {
+
+    const handleShowFlightsOnlyBtnClick = () => {
+        if (showedCardsPeriods !== ShowedCardsPeriods.SingleFlights) {
             dispatch(changeShowedCardsPeriod(ShowedCardsPeriods.SingleFlights));
         } else {
             dispatch(changeShowedCardsPeriod(ShowedCardsPeriods.Years));
@@ -26,14 +26,9 @@ function ShowFlightsOnlySwitcher(): JSX.Element {
         }
     }
 
-
     return (
         <div className="show-flights-only-switcher-wrapper">
-            <p className="show-flights-only-title">только рейсы</p>
-            <label className="switcher">
-                <input type="checkbox" ref={switcherCheckboxField} onChange={handlerCheckboxChange}/>
-                    <span className="slider round"></span>
-            </label>
+            <button className={`show-flights-only-btn ${showedCardsPeriods === ShowedCardsPeriods.SingleFlights ? 'active': ''}`} onClick={handleShowFlightsOnlyBtnClick}>Показывать только рейсы</button>
         </div>
     );
 }

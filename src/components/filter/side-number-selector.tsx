@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from "../../hooks/redux-hooks";
-import {getFilteredFlights, getPlaneTypeFilter, getSideNumberFilter} from "../../store/selectors";
+import {getFilteredFlights, getSideNumberFilter} from "../../store/selectors";
 import React, {useEffect, useRef} from "react";
 import {changeSideNumberFilter} from "../../store/interface-process/interface-process";
 import {defaultSelectFilterValue} from "../../settings/consts";

@@ -37,7 +37,6 @@ function CancelFiltersBtn(): JSX.Element {
         return (
         <div className="cancel-filters-btn-wrapper">
             <button className="cancel-filters-btn" onClick={handlerCancelBtnClick}>Сбросить все фильтры</button>
-
         </div>
     );
 }

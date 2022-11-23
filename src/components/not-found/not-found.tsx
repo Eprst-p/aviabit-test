@@ -6,12 +6,11 @@ function NotFound(): JSX.Element {
   return (
     <div className="page404_container">
       <div className="page404_title">
-        <h1>
+        <h2>
           404
           <br />
-          <br />
           <small>Page not found</small>
-        </h1>
+        </h2>
       </div>
       <Link className="page404_back_link" to={AppRoute.MainScreen}>Go to main page</Link>
       <br />

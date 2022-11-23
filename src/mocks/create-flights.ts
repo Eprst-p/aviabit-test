@@ -1,6 +1,6 @@
 import {FlightType} from '../types/flight-type';
 import {getRandomElement, getRandomPositiveNumber} from "./randomaizers";
-import {fligthNumbers, planeNumber, planeTypes} from "./names";
+import {planeNumber, planeTypes} from "./names";
 import {airports} from "./airports";
 import {Airport} from "../types/airport";
 import { faker } from '@faker-js/faker';
@@ -17,7 +17,7 @@ const createFlight = () => {
     }
     const generateDate = () => {
         const date = new Date();
-        date.setFullYear(date.getFullYear()  - 5 + getRandomPositiveNumber(0, 10));
+        date.setFullYear(date.getFullYear()  - 5 + getRandomPositiveNumber(0, 5));
         date.setMonth(date.getMonth() + getRandomPositiveNumber(0, 15));
         date.setDate(date.getDate() + getRandomPositiveNumber(5, 15));
         date.setHours(date.getHours() + getRandomPositiveNumber(0, 24));
@@ -50,6 +50,5 @@ const createFlight = () => {
     } as FlightType);
 };
 
-export const flights = Array.from({length: 100}, () => createFlight());
-
-
+const flights = Array.from({length: 500}, () => createFlight());
+export const flightsInJSON = JSON.stringify(flights);
