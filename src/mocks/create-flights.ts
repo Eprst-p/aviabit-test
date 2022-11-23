@@ -50,5 +50,5 @@ const createFlight = () => {
     } as FlightType);
 };
 
-const flights = Array.from({length: 500}, () => createFlight());
-export const flightsInJSON = JSON.stringify(flights);
+const createdFlights = Array.from({length: 500}, () => createFlight());
+export const flightsJSON = JSON.stringify(createdFlights);

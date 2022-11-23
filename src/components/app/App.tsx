@@ -1,6 +1,6 @@
 import {useAppDispatch} from "../../hooks/redux-hooks";
 import {loadFlights} from "../../store/data-process/data-process";
-import {flightsInJSON} from "../../mocks/create-flights";
+import {flightsJSON} from "../../mocks/create-flights";
 import MainScreen from "../main-screen/main-screen";
 import {AppRoute} from "../../settings/app-route";
 import {Route, Routes} from "react-router-dom";
@@ -10,7 +10,7 @@ import './App.scss';
 
 function App() {
     const dispatch = useAppDispatch();
-    const flights = JSON.parse(flightsInJSON);
+    const flights = JSON.parse(flightsJSON);
     dispatch(loadFlights(flights));
 
     return (
