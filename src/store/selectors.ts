@@ -162,7 +162,7 @@ export const getPeriodNames = createSelector(getFilteredFlights, getShowedCardsP
     return Array.from(uniqueNames);
 });
 
-export const getFlightNames = createSelector(getAllFlights, (flights) => {
+export const getFlightNames = createSelector(getFilteredFlights, (flights) => {
     return flights.map((flight)=> flight.flight);
 });
 
